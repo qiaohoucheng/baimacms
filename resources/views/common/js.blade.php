@@ -1,0 +1,1 @@
+<script src="{{ asset('/js/layui.all.js') }}"></script>
