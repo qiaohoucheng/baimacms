@@ -11,6 +11,6 @@
 |
 */
 
-Auth::routes();
-Route::get('/','IndexController@index');
-Route::get('/index','IndexController@index');
+Route::get('/', function () {
+    return view('welcome');
+});
