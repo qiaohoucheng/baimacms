@@ -24,10 +24,9 @@ class IndexController extends Controller
      */
     public function uploadcos($object, $content)
     {
-
-        $bucket = "saber";
+        $bucket = config('baima.cos_bucket');
         try {
-            $cosClient = new Client(array('region' => 'ap-chengdu',
+            $cosClient = new Client(array('region' => config('baima.cos_region'),
                 'credentials'=> array(
                     'appId' => config('baima.cos_appId'),
                     'secretId'  => config('baima.cos_secretId'),

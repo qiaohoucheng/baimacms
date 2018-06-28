@@ -2,5 +2,6 @@
 开始搭建一个后台
 
 ## 使用的资源
-<p> Laravel 框架</p>
-<p> 腾讯云存储 Cos</p>
+* Laravel5.5 框架
+* Layui 前端框架 或者 iview
+* 腾讯云存储Cos
