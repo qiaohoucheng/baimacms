@@ -16,9 +16,30 @@ class IndexController extends Controller
     {
 
     }
-
-    public function upload()
+    /**
+     * 上传到腾讯云
+     * @param $object
+     * @param $content
+     * @return mixed
+     */
+    public function uploadcos($object, $content)
     {
 
+        $bucket = "saber";
+        try {
+            $cosClient = new Client(array('region' => 'ap-chengdu',
+                'credentials'=> array(
+                    'appId' => config('baima.cos_appId'),
+                    'secretId'  => config('baima.cos_secretId'),
+                    'secretKey' => config('baima.cos_secretKey')
+                )));
+            //$result = $cosClient->listBuckets();
+            //$result = $cosClient->createBucket(array('Bucket' => 'olympic-2108-6-19'));
+            $cosClient->putObject(array('Bucket' =>$bucket, 'Key' => $object, 'Body' => $content));
+        } catch (OssException $e) {
+            print $e->getMessage();
+            echo $e->getMessage() . PHP_EOL;
+        }
+        return $cosClient->getObjectUrl($bucket,$object);
     }
 }
