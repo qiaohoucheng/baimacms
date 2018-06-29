@@ -3,5 +3,7 @@
 
 ## 使用的资源
 * Laravel5.5 框架
-* Layui 前端框架 或者 iview
 * 腾讯云存储Cos
+* Vue
+* Vue-router
+* iView
