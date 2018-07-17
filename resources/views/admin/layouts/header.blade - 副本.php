@@ -1,10 +1,15 @@
-<!-- 头部区域（可配合layui已有的水平导航） -->
-<ul class="layui-nav layui-layout-left">
-    <li class="layui-nav-item" >
+<!-- 头部区域 -->
+<ul class="layui-nav layui-layout-left" lay-filter="">
+    <li class="layui-nav-item layadmin-flexible" >
         <a href="javascript:;" layadmin-event="flexible" title="侧边伸缩">
             <i class="layui-icon layui-icon-shrink-right" id="LAY_app_flexible"></i>
         </a>
     </li>
+    {{--<li class="layui-nav-item layui-this layui-hide-xs layui-hide-sm layui-show-md-inline-block">--}}
+      {{--<a lay-href="" title="">--}}
+        {{--控制台--}}
+      {{--</a>--}}
+    {{--</li>--}}
     <li class="layui-nav-item layui-hide-xs" >
         <a href="http://www.layui.com/admin/" target="_blank" title="前台">
             <i class="layui-icon layui-icon-website"></i>
@@ -18,8 +23,9 @@
     <li class="layui-nav-item ">
         <input type="text" placeholder="搜索..." autocomplete="off" class="layui-input layui-input-search" layadmin-event="serach">
     </li>
+    <span class="layui-nav-bar"></span>
 </ul>
-<ul class="layui-nav layui-layout-right">
+<ul class="layui-nav layui-layout-right" lay-filter="">
     <li class="layui-nav-item" >
         <a lay-href="app/message/" layadmin-event="message">
             <i class="layui-icon layui-icon-notice"></i>
@@ -38,20 +44,14 @@
     </li>
     <li class="layui-nav-item">
         <a href="javascript:;">
-            {{ Auth::user()->name }}
+            <cite>贤心</cite>
             <span class="layui-nav-more"></span>
         </a>
         <dl class="layui-nav-child layui-anim layui-anim-upbit">
-            <dd><a href="set/user/info">基本资料</a></dd>
-            <dd><a href="set/user/password">修改密码</a></dd>
+            <dd><a lay-href="set/user/info">基本资料</a></dd>
+            <dd><a lay-href="set/user/password">修改密码</a></dd>
             <hr>
-            <dd layadmin-event="logout" style="text-align: center;">
-                <a href="{{ url('/logout') }}" onclick="event.preventDefault();
-        document.getElementById('logout-form').submit();">退出</a>
-                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                    {{ csrf_field() }}
-                </form>
-            </dd>
+            <dd layadmin-event="logout" style="text-align: center;"><a>退出</a></dd>
         </dl>
     </li>
     <li class="layui-nav-item">
@@ -59,4 +59,10 @@
             <i class="layui-icon layui-icon-more-vertical"></i>
         </a>
     </li>
+    <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm">
+        <a href="javascript:;" >
+            <i class="layui-icon layui-icon-more-vertical"></i>
+        </a>
+    </li>
+    <span class="layui-nav-bar"></span>
 </ul>
