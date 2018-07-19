@@ -22,6 +22,23 @@
                     </dd>
                 </dl>
             </li>
+            <li class="layui-nav-item ">
+                <a href="javascript:;" lay-tips="设置" lay-direction="2">
+                    <i class="layui-icon layui-icon-set"></i> <cite>设置</cite>
+                    <span class="layui-nav-more"></span>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd>
+                        <a href="javascript:;" lay-href="/">控制台</a>
+                    </dd>
+                    <dd  class="">
+                        <a href="javascript:;" lay-href="home/homepage1">主页一</a>
+                    </dd>
+                    <dd >
+                        <a href="javascript:;" lay-href="home/homepage2">主页二</a>
+                    </dd>
+                </dl>
+            </li>
         </ul>
     </div>
 </div>
