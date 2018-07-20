@@ -1,4 +1,3 @@
-/** layuiAdmin.pro-v1.0.0 LPPL License By http://www.layui.com/admin/ */
 ;
 layui.extend({
     setter: "config",
@@ -89,14 +88,14 @@ layui.extend({
             u = "layadmin-layout-tabs",
             d = layui.$,
             c = d(window);
-         // layui.link(a.base + "style/admin.css?v=" + (i.v + "-1"),
-         //    function() {
-         //        r()
-         //    },
-         //    "layuiAdmin"),
+        layui.link(a.base + "style/admin.css?v=" + (i.v + "-1"),
+            function() {
+                r()
+            },
+            "layuiAdmin"),
             window.onhashchange = function() {
-                //r(),
-                //layui.event.call(this, a.MOD_NAME, "hash({*})", layui.router())
+                r(),
+                    layui.event.call(this, a.MOD_NAME, "hash({*})", layui.router())
             },
             layui.each(a.extend,
                 function(e, n) {

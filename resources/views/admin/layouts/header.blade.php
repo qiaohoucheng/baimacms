@@ -15,7 +15,7 @@
             <i class="layui-icon layui-icon-refresh-3"></i>
         </a>
     </li>
-    <li class="layui-nav-item " lay-unselect>
+    <li class="layui-nav-item  layui-hide-xs" lay-unselect>
         <input type="text" placeholder="搜索..." autocomplete="off" class="layui-input layui-input-search" layadmin-event="serach">
     </li>
 </ul>
@@ -32,7 +32,7 @@
         </a>
     </li>
     <li class="layui-nav-item" lay-unselect>
-        <a href="javascript:;">
+        <a href="javascript:;" layadmin-event="fullscreen">
             <i class="layui-icon layui-icon-screen-full"></i>
         </a>
     </li>
@@ -55,7 +55,7 @@
         </dl>
     </li>
     <li class="layui-nav-item" lay-unselect>
-        <a href="javascript:;" lay-event="about">
+        <a href="javascript:;" lay-even="about">
             <i class="layui-icon layui-icon-more-vertical"></i>
         </a>
     </li>
