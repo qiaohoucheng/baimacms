@@ -103,8 +103,8 @@ layui.extend({
                     var i = {};
                     i[n] = "{/}" + a.base + "lib/extend/" + n,
                         layui.extend(i)
-                }),
-            e("index", {
-                render: o
-            })
+                })
+            // e("index", {
+            //     render: o
+            // })
     });

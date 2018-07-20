@@ -46,7 +46,7 @@
     layui.config({
         base: '/layui/layadmin/',
         version: '1.0.0'
-    }).use('index');
+    }).use('indexs');
     //JavaScript代码区域
     layui.use('element', function(){
         var element = layui.element;

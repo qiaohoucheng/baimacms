@@ -58,7 +58,7 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
     ,theme: {
       //内置主题配色方案
       color: [{
-        main: '#20222A' //主题色
+        main: '#495060' //主题色
         ,selected: '#2b85e4' //选中色
         ,alias: 'default' //默认别名
       },{
@@ -96,7 +96,7 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
       },{
         main: '#24262F'
         ,logo: '#3A3D49'
-        ,selected: '#009688'
+        ,selected: '#2b85e4'
         ,alias: 'classic-black' //经典黑
       },{
         logo: '#226A62'
