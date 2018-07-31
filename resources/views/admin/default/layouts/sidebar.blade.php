@@ -6,7 +6,7 @@
         </div>
         <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" >
             <li class="layui-nav-item layui-this">
-                <a href="javascript:;" >
+                <a href="{{ url('/') }}" >
                     <i class="layui-icon layui-icon-chart-screen"></i> <cite>概览</cite>
                 </a>
             </li>
