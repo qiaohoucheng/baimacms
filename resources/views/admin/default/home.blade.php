@@ -24,7 +24,7 @@
         <div class="layui-card layadmin-header">
             <div class="layui-breadcrumb" lay-filter="breadcrumb" style="visibility: visible;">
                 @if( isset($a))
-                <a href="/application/index">{{ $a }}</a>
+                <a href="{{ $jump }}">{{ $a }}</a>
                 @endif
                 @if(isset($a) && isset($b))
                 <span lay-separator="">/</span>

@@ -40,7 +40,7 @@
                 </a>
                 <dl class="layui-nav-child">
                     <dd>
-                        <a href="javascript:;" lay-href="/">文章列表</a>
+                        <a href="{{ url('/article') }}" >文章列表</a>
                     </dd>
                     <dd  class="">
                         <a href="javascript:;" lay-href="home/homepage1">评论管理</a>
@@ -60,7 +60,7 @@
                 </a>
                 <dl class="layui-nav-child">
                     <dd>
-                        <a href="javascript:;" lay-href="/">内容分类</a>
+                        <a href="{{ url('/type') }}" >内容分类</a>
                     </dd>
                 </dl>
             </li>
@@ -71,7 +71,7 @@
                 </a>
                 <dl class="layui-nav-child">
                     <dd>
-                        <a href="javascript:;" lay-href="/">用户列表</a>
+                        <a href="{{ url('/member') }}" >用户列表</a>
                     </dd>
                 </dl>
             </li>
@@ -82,10 +82,10 @@
                 </a>
                 <dl class="layui-nav-child">
                     <dd>
-                        <a href="javascript:;" lay-href="/">资源列表</a>
+                        <a href="{{ url('/resource') }}" >资源列表</a>
                     </dd>
                     <dd  class="">
-                        <a href="javascript:;" lay-href="home/homepage1">新增资源</a>
+                        <a href="{{ url('/resource/crreate') }}">新增资源</a>
                     </dd>
                 </dl>
             </li>
@@ -96,10 +96,10 @@
                 </a>
                 <dl class="layui-nav-child">
                     <dd>
-                        <a href="javascript:;" lay-href="/">文档列表</a>
+                        <a href="{{ url('/doc/crreate') }}" lay-href="/">文档列表</a>
                     </dd>
                     <dd  class="">
-                        <a href="javascript:;" lay-href="home/homepage1">新增文档</a>
+                        <a href="{{ url('/doc/crreate') }}" lay-href="home/homepage1">新增文档</a>
                     </dd>
                 </dl>
             </li>
