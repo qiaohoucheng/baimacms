@@ -12,7 +12,7 @@
             </li>
             <li class="layui-nav-item ">
                 <a href="javascript:;" lay-tips="首页管理" lay-direction="2">
-                    <i class="layui-icon layui-icon-template-1"></i> <cite>首页管理</cite>
+                    <i class="layui-icon layui-icon-template-1"></i> <cite>网站管理</cite>
                     <span class="layui-nav-more"></span>
                 </a>
                 <dl class="layui-nav-child">
@@ -27,6 +27,9 @@
                     </dd>
                     <dd >
                         <a href="javascript:;" lay-href="/">精品推荐</a>
+                    </dd>
+                    <dd >
+                        <a href="javascript:;" lay-href="/">友情链接</a>
                     </dd>
                 </dl>
             </li>
