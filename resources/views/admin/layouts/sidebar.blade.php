@@ -17,13 +17,16 @@
                 </a>
                 <dl class="layui-nav-child">
                     <dd>
+                        <a href="javascript:;" lay-href="/">首页设置</a>
+                    </dd>
+                    <dd>
                         <a href="javascript:;" lay-href="/">轮播图管理</a>
                     </dd>
                     <dd  class="">
-                        <a href="javascript:;" lay-href="home/homepage1">主页一</a>
+                        <a href="javascript:;" lay-href="/">推广管理</a>
                     </dd>
                     <dd >
-                        <a href="javascript:;" lay-href="home/homepage2">主页二</a>
+                        <a href="javascript:;" lay-href="/">精品推荐</a>
                     </dd>
                 </dl>
             </li>
@@ -34,13 +37,16 @@
                 </a>
                 <dl class="layui-nav-child">
                     <dd>
-                        <a href="javascript:;" lay-href="/">控制台</a>
+                        <a href="javascript:;" lay-href="/">文章列表</a>
                     </dd>
                     <dd  class="">
-                        <a href="javascript:;" lay-href="home/homepage1">主页一</a>
+                        <a href="javascript:;" lay-href="home/homepage1">评论管理</a>
                     </dd>
                     <dd >
-                        <a href="javascript:;" lay-href="home/homepage2">主页二</a>
+                        <a href="javascript:;" lay-href="home/homepage2">标签管理</a>
+                    </dd>
+                    <dd >
+                        <a href="javascript:;" lay-href="home/homepage2">模板管理</a>
                     </dd>
                 </dl>
             </li>
@@ -51,13 +57,7 @@
                 </a>
                 <dl class="layui-nav-child">
                     <dd>
-                        <a href="javascript:;" lay-href="/">控制台</a>
-                    </dd>
-                    <dd  class="">
-                        <a href="javascript:;" lay-href="home/homepage1">主页一</a>
-                    </dd>
-                    <dd >
-                        <a href="javascript:;" lay-href="home/homepage2">主页二</a>
+                        <a href="javascript:;" lay-href="/">内容分类</a>
                     </dd>
                 </dl>
             </li>
@@ -68,13 +68,7 @@
                 </a>
                 <dl class="layui-nav-child">
                     <dd>
-                        <a href="javascript:;" lay-href="/">控制台</a>
-                    </dd>
-                    <dd  class="">
-                        <a href="javascript:;" lay-href="home/homepage1">主页一</a>
-                    </dd>
-                    <dd >
-                        <a href="javascript:;" lay-href="home/homepage2">主页二</a>
+                        <a href="javascript:;" lay-href="/">用户列表</a>
                     </dd>
                 </dl>
             </li>
@@ -85,13 +79,10 @@
                 </a>
                 <dl class="layui-nav-child">
                     <dd>
-                        <a href="javascript:;" lay-href="/">控制台</a>
+                        <a href="javascript:;" lay-href="/">资源列表</a>
                     </dd>
                     <dd  class="">
-                        <a href="javascript:;" lay-href="home/homepage1">主页一</a>
-                    </dd>
-                    <dd >
-                        <a href="javascript:;" lay-href="home/homepage2">主页二</a>
+                        <a href="javascript:;" lay-href="home/homepage1">新增资源</a>
                     </dd>
                 </dl>
             </li>
@@ -102,13 +93,10 @@
                 </a>
                 <dl class="layui-nav-child">
                     <dd>
-                        <a href="javascript:;" lay-href="/">控制台</a>
+                        <a href="javascript:;" lay-href="/">文档列表</a>
                     </dd>
                     <dd  class="">
-                        <a href="javascript:;" lay-href="home/homepage1">主页一</a>
-                    </dd>
-                    <dd >
-                        <a href="javascript:;" lay-href="home/homepage2">主页二</a>
+                        <a href="javascript:;" lay-href="home/homepage1">新增文档</a>
                     </dd>
                 </dl>
             </li>
@@ -119,13 +107,27 @@
                 </a>
                 <dl class="layui-nav-child">
                     <dd>
-                        <a href="javascript:;" lay-href="/">控制台</a>
+                        <a href="javascript:;" lay-href="/">管理员列表</a>
                     </dd>
                     <dd  class="">
-                        <a href="javascript:;" lay-href="home/homepage1">主页一</a>
+                        <a href="javascript:;" lay-href="home/homepage1">用户组管理</a>
                     </dd>
                     <dd >
-                        <a href="javascript:;" lay-href="home/homepage2">主页二</a>
+                        <a href="javascript:;" lay-href="home/homepage2">菜单管理</a>
+                    </dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item ">
+                <a href="javascript:;" lay-tips="扩展管理" lay-direction="2">
+                    <i class="layui-icon layui-icon-component"></i> <cite>扩展管理</cite>
+                    <span class="layui-nav-more"></span>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd>
+                        <a href="javascript:;" lay-href="/">文章抓取</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;" lay-href="/">二维码生成</a>
                     </dd>
                 </dl>
             </li>
@@ -136,13 +138,13 @@
                 </a>
                 <dl class="layui-nav-child">
                     <dd>
-                        <a href="javascript:;" lay-href="/">控制台</a>
+                        <a href="javascript:;" lay-href="/">网站设置</a>
                     </dd>
                     <dd  class="">
-                        <a href="javascript:;" lay-href="home/homepage1">主页一</a>
+                        <a href="javascript:;" lay-href="home/homepage1">公众号设置</a>
                     </dd>
-                    <dd >
-                        <a href="javascript:;" lay-href="home/homepage2">主页二</a>
+                    <dd  class="">
+                        <a href="javascript:;" lay-href="home/homepage1">API设置</a>
                     </dd>
                 </dl>
             </li>
