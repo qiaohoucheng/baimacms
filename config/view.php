@@ -16,7 +16,8 @@ return [
     'paths' => [
         resource_path('views'),
     ],
-    'TEMP'=>'default',
+    //模板路径
+    'temp_url'=>'admin.default',
     /*
     |--------------------------------------------------------------------------
     | Compiled View Path

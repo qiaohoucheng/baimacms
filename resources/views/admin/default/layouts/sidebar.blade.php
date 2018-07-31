@@ -15,9 +15,9 @@
                     <i class="layui-icon layui-icon-template-1"></i> <cite>网站管理</cite>
                     <span class="layui-nav-more"></span>
                 </a>
-                <dl class="layui-nav-child">
+                <dl class="layui-nav-child ">
                     <dd>
-                        <a href="{{ url('/website') }}" lay-href="/">首页设置</a>
+                        <a href="{{ url('/website') }}">首页设置</a>
                     </dd>
                     <dd>
                         <a href="javascript:;" lay-href="/">轮播图管理</a>

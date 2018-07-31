@@ -4,27 +4,28 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>{{ $page_title or "BaimaCMS" }}</title>
-    @include('admin.layouts.css')
+    @include('admin.default.layouts.css')
     @yield('css')
-    @include('admin.layouts.js')
+    @include('admin.default.layouts.js')
 </head>
 <body class="layui-layout-body">
 <div id="LAY_app" class="layadmin-tabspage-none ">
 <div  class="layui-layout layui-layout-admin">
     <!-- 头部区域 -->
     <div class="layui-header">
-        @include('admin.layouts.header')
+        @include('admin.default.layouts.header')
     </div>
     <!-- 侧边栏区域 -->
     <div class="layui-side layui-bg-black">
-        @include('admin.layouts.sidebar')
+        @include('admin.default.layouts.sidebar')
     </div>
 
     <div class="layui-body">
         <div class="layui-card layadmin-header">
             <div class="layui-breadcrumb" lay-filter="breadcrumb" style="visibility: visible;">
-                <a href="/application/index">申报管理</a><span lay-separator="">/</span>
-                <a><cite>测试</cite></a>
+                <a href="/application/index">概览</a>
+                <span lay-separator="">/</span>
+                <a><cite></cite></a>
             </div>
         </div>
         <!-- 内容主体区域 -->
@@ -33,7 +34,7 @@
 
     <div class="layui-footer">
         <!-- 底部固定区域 -->
-        @include('admin.layouts.footer')
+        @include('admin.default.layouts.footer')
     </div>
 </div>
 <div class="layui-layer-shade" id="layui-layer-shade2" times="2" style="z-index: 19891015; background-color: rgb(0, 0, 0); opacity: 0.1; display: none" ></div>
