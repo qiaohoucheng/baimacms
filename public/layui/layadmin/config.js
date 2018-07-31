@@ -58,7 +58,7 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
     ,theme: {
       //内置主题配色方案
       color: [{
-        main: '#495060' //主题色
+        main: '#515a6e' //主题色  #515a6e
         ,selected: '#2b85e4' //选中色
         ,alias: 'default' //默认别名
       },{

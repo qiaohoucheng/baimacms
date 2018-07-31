@@ -23,9 +23,13 @@
     <div class="layui-body">
         <div class="layui-card layadmin-header">
             <div class="layui-breadcrumb" lay-filter="breadcrumb" style="visibility: visible;">
-                <a href="/application/index">概览</a>
+                @if( isset($a))
+                <a href="/application/index">{{ $a }}</a>
+                @endif
+                @if(isset($a) && isset($b))
                 <span lay-separator="">/</span>
-                <a><cite></cite></a>
+                <a><cite>{{ $b }}</cite></a>
+                @endif
             </div>
         </div>
         <!-- 内容主体区域 -->
