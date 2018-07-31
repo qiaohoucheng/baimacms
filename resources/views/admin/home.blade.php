@@ -21,6 +21,12 @@
     </div>
 
     <div class="layui-body">
+        <div class="layui-card layadmin-header">
+            <div class="layui-breadcrumb" lay-filter="breadcrumb" style="visibility: visible;">
+                <a href="/application/index">申报管理</a><span lay-separator="">/</span>
+                <a><cite>测试</cite></a>
+            </div>
+        </div>
         <!-- 内容主体区域 -->
         @yield('content')
     </div>

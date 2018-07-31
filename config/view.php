@@ -16,7 +16,7 @@ return [
     'paths' => [
         resource_path('views'),
     ],
-
+    'TEMP'=>'default',
     /*
     |--------------------------------------------------------------------------
     | Compiled View Path

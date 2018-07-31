@@ -17,7 +17,7 @@
                 </a>
                 <dl class="layui-nav-child">
                     <dd>
-                        <a href="javascript:;" lay-href="/">首页设置</a>
+                        <a href="{{ url('/website') }}" lay-href="/">首页设置</a>
                     </dd>
                     <dd>
                         <a href="javascript:;" lay-href="/">轮播图管理</a>
