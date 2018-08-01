@@ -23,12 +23,16 @@
     <div class="layui-body">
         <div class="layui-card layadmin-header">
             <div class="layui-breadcrumb" lay-filter="breadcrumb" style="visibility: visible;">
-                @if( isset($a))
-                <a href="{{ $jump }}">{{ $a }}</a>
+                @if( isset($a) )
+                    <a href="{{ $a }}">{{ $a }}</a>
                 @endif
-                @if(isset($a) && isset($b))
-                <span lay-separator="">/</span>
-                <a><cite>{{ $b }}</cite></a>
+                @if( isset($b) )
+                    <span lay-separator="">/</span>
+                    <a href="{{ $a.'-'.$b }}">{{ $b }}</a>
+                @endif
+                @if( isset($a) && isset($c) && $a!='')
+                    <span lay-separator="">/</span>
+                    <a><cite>{{ $c }}</cite></a>
                 @endif
             </div>
         </div>

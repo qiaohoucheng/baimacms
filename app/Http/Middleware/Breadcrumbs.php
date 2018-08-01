@@ -19,7 +19,10 @@ class Breadcrumbs
         if(!$request->ajax()){
             $uri =  $request->route()->getName();
             if(strpos($uri,'.')){
-                list($a,$b) = explode('.',$uri);
+                list($a,$c) = explode('.',$uri);
+                if(strpos($a,'-')){
+                    list($a,$b) = explode('-',$a);
+                }
             }else{
                 $a = $uri;
             }
@@ -27,6 +30,7 @@ class Breadcrumbs
             $marr = array(
                 'home'=>'概览',
                 'website'=>'网站管理',
+                'website-carousel'=>'轮播管理',
                 'article'=>'内容管理',
                 'type'=>'分类管理',
                 'member'=>'用户管理',
@@ -36,20 +40,30 @@ class Breadcrumbs
                 'extend'=>'扩展管理',
                 'setting'=>'设置',
             );
+            $carr = array(
+                'index'=>'首页管理',
+                'carousel'=>'轮播图管理',
+                'spread'=>'推广管理',
+                'main'=>'精品推荐',
+                'link'=>'友情链接',
+            );
             $farr = array(
                 'index'=>'列表',
                 'create'=>'新增',
                 'edit'=>'编辑',
                 'show'=>'详情',
             );
-
             if(isset($a)){
-                $aname = $marr[$a] ? $marr[$a] : '';
+                $aname = array_key_exists($a,$marr) ? $marr[$a] : '';
                 view()->share('a', $aname);
             }
             if(isset($b)){
-                $bname = $farr[$b] ? $farr[$b] : '';
+                $bname = array_key_exists($b,$carr) ? $carr[$b] : '';
                 view()->share('b', $bname);
+            }
+            if(isset($c)){
+                $cname = array_key_exists($c,$farr) ? $farr[$c] : '';
+                view()->share('c', $cname);
             }
             view()->share('jump',$a);
         }

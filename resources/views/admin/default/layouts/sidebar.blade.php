@@ -5,31 +5,31 @@
             <span>CMS</span>
         </div>
         <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" >
-            <li class="layui-nav-item layui-this">
+            <li class="layui-nav-item {!! Request::is('home') ? ' layui-this' : '' !!}" data-model="{{ $a }}">
                 <a href="{{ url('/') }}" >
                     <i class="layui-icon layui-icon-chart-screen"></i> <cite>概览</cite>
                 </a>
             </li>
-            <li class="layui-nav-item ">
+            <li class="layui-nav-item {!! Request::is('website*') ? ' layui-nav-itemed' : '' !!}">
                 <a href="javascript:;" lay-tips="首页管理" lay-direction="2">
                     <i class="layui-icon layui-icon-template-1"></i> <cite>网站管理</cite>
                     <span class="layui-nav-more"></span>
                 </a>
                 <dl class="layui-nav-child ">
                     <dd>
-                        <a href="{{ url('/website') }}">首页设置</a>
+                        <a href="{{ url('/website-index') }}">首页设置</a>
                     </dd>
                     <dd>
-                        <a href="javascript:;" lay-href="/">轮播图管理</a>
+                        <a href="{{ url('/website-carousel') }}" >轮播图管理</a>
                     </dd>
-                    <dd  class="">
-                        <a href="javascript:;" lay-href="/">推广管理</a>
-                    </dd>
-                    <dd >
-                        <a href="javascript:;" lay-href="/">精品推荐</a>
+                    <dd>
+                        <a href="{{ url('/website-spread') }}" >推广管理</a>
                     </dd>
                     <dd >
-                        <a href="javascript:;" lay-href="/">友情链接</a>
+                        <a href="{{ url('/website-main') }}" >精品推荐</a>
+                    </dd>
+                    <dd >
+                        <a href="{{ url('/website-link') }}" >友情链接</a>
                     </dd>
                 </dl>
             </li>
