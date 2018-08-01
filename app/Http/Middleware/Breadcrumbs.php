@@ -46,6 +46,7 @@ class Breadcrumbs
                 'spread'=>'推广管理',
                 'main'=>'精品推荐',
                 'link'=>'友情链接',
+                'menu'=>'菜单管理'
             );
             $farr = array(
                 'index'=>'列表',

@@ -116,7 +116,7 @@
                         <a href="javascript:;" lay-href="home/homepage1">用户组管理</a>
                     </dd>
                     <dd >
-                        <a href="javascript:;" lay-href="home/homepage2">菜单管理</a>
+                        <a href="{{ url('/power-menu') }}" >菜单管理</a>
                     </dd>
                 </dl>
             </li>

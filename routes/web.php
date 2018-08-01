@@ -7,7 +7,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('breadcrumbs'); //概览
 Route::group(['namespace' => 'Admin','middleware' => ['auth','breadcrumbs']], function(){
-    /*  ---------  网站管理理由  --------  */
+    /*  ---------  网站管理路由  --------  */
     Route::resource('website-index','WebsiteController'); //首页管理
     Route::resource('website-carousel','CarouselController'); //轮播图管理
     Route::resource('website-spread','SpreadController'); //推广管理
@@ -19,7 +19,9 @@ Route::group(['namespace' => 'Admin','middleware' => ['auth','breadcrumbs']], fu
     Route::resource('member','MemberController'); //用户管理
     Route::resource('resource','ResourceController'); //资源管理
     Route::resource('doc','DocController');  //文档管理
+    /*  ---------  权限管理路由  --------  */
     Route::resource('power','PowerController');   //权限管理
+    Route::resource('power-menu','MenuController');   //菜单管理
     Route::resource('extend','ExtendController');  //扩展管理
     Route::resource('setting','SettingController');  //设置
 });
