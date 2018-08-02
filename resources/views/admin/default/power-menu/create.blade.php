@@ -2,4 +2,104 @@
 @section('css')
 @endsection
 @section('content')
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <form class="layui-form" action="{{ url('/power-menu') }}" method="POST" >
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <div class="layui-card">
+            <div class="layui-card-header">
+                <h3>填写信息</h3>
+            </div>
+            <div class="layui-card-body">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">路由</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="url" lay-verify="required" placeholder="请输入链接" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">上级目录</label>
+                    <div class="layui-input-block">
+                        <select name="pid" lay-filter="aihao">
+                            <option value=""></option>
+                            <option value="0">根目录</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">排序</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="sort"  placeholder="请输入数字" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item" pane="">
+                    <label class="layui-form-label">是否隐藏</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="is_hide" value="1" title="是">
+                        <input type="radio" name="is_hide" value="0" title="否" checked="">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit="" lay-filter="create-btn">立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function(){
+        var form = layui.form
+            ,layer = layui.layer
+            ,layedit = layui.layedit
+            ,laydate = layui.laydate;
+
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+
+        //自定义验证规则
+        form.verify({
+            title: function(value){
+                if(value.length < 5){
+                    return '标题至少得5个字符啊';
+                }
+            }
+            ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+            ,content: function(value){
+                layedit.sync(editIndex);
+            }
+        });
+
+        //监听提交
+        form.on('submit(create-btn)', function(data){
+            console.log(data);
+            $.post(data.form.action,data.field,function(data){
+                layer.msg(data.message);
+                if(data.code==1){
+                    setTimeout(function(){
+                        window.location.href='/power-menu';
+                    },1000);
+                }
+            });
+            return false;
+        });
+    });
+</script>
 @endsection

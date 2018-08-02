@@ -19,7 +19,8 @@
 * 权限管理
 * 拓展管理
 * 设置
-
+### 使用
+php artisan key:generate;
 
 
 

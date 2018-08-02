@@ -8,7 +8,7 @@
                 <div class="layui-card">
                     <div class="layui-card-header">
                         <div class="pull-right">
-                            <button class="layui-btn layui-btn-sm" >新增菜单</button>
+                            <a href="{{ url('/power-menu/create') }}" class="layui-btn layui-btn-sm" >新增菜单</a>
                         </div>
                     </div>
                     <div class="layui-card-body">
@@ -32,19 +32,23 @@
                         <!-- 表格 -->
                         <table class="layui-table" id="idTest" lay-filter="work">
                         </table>
+                        <script type="text/html" id="hidebox">
+                            @{{#  if(d.is_hide == 1){ }}
+                                隐藏
+                            @{{#  }else{ }}
+                                显示
+                            @{{#  } }}
+                        </script>
                         <script type="text/html" id="sbox">
-                            @{{#  if(d.sex == 1){ }}
-                            男
-                            @{{#  } else { }}
-                            女
+                            @{{#  if(d.status == 1){ }}
+                                正常
+                            @{{#  }else{ }}
+                                已删除
                             @{{#  } }}
                         </script>
                         <script type="text/html" id="barDemo">
-                            <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">详情</a>
-                            @{{#  if(d.status == 1){ }}
-                            <a class="layui-btn layui-btn-xs"  lay-event="edit">审核</a>
-                            @{{#  } }}
-                            {{--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>--}}
+                            <a class="layui-btn layui-btn-sm"  lay-event="edit">编辑</a>
+                            <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del">删除</a>
                         </script>
                     </div>
                 </div>
@@ -69,9 +73,9 @@
                     ,{field:'pid',  width:120,align:'center',title:'上级菜单'}
                     ,{field:'url', width:250,title:'路由'}
                     ,{field:'sort',width:80,align:'center',title:'排序'}
-                    ,{field:'is_hide', width:150,title:'是否隐藏'}
+                    ,{field:'is_hide', width:150,title:'是否隐藏', templet:'#hidebox'}
                     ,{field:'created_at', width:200,title:'创建时间'}
-                    ,{field:'status', width:150,title:'状态'}
+                    ,{field:'status', width:150,title:'状态', templet:'#sbox'}
                     ,{fixed: 'right',  align:'center', toolbar: '#barDemo',title:'操作'}
                 ]],
                 done: function(res){

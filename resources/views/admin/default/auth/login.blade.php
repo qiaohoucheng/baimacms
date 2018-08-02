@@ -6,13 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" href="{{ asset('/layui/css/layui.css') }}">
-    <link rel="stylesheet" href="{{ asset('/layui/css/all.css') }}">
     <link rel="stylesheet" href="{{asset('/css/login.css')}}" >
     <link rel="stylesheet" href="{{asset('/css/admin.css')}}" >
 </head>
 <body layadmin-themealias="default" class="layui-layout-body" >
 <div id="LAY_app" class="layadmin-tabspage-none">
-    <link rel="stylesheet" href="./dist/style/login.css?v=1.0.0 pro-1" media="all">
     <div class="layadmin-user-login layadmin-user-display-show" id="LAY-user-login">
         <div class="layadmin-user-login-main" style="background-color: #fff;">
             <div class="layadmin-user-login-box layadmin-user-login-header">

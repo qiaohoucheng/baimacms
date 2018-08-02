@@ -17,7 +17,7 @@ class Controller extends BaseController
         $page  = $request->get('page') ? $request->get('page') : 1;
         $limit = $request->get('limit')? $request->get('limit') : 10;
         $start = ($page-1) * $limit;
-        $data  = $model::where('status',1)->offset($start)->limit($limit)->get()->toArray();
+        $data  = $model::where('status',1)->offset($start)->limit($limit)->orderBy('id','desc')->get()->toArray();
         $count = $model::where('status',1)->count();
 
         $return = array(
