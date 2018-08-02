@@ -5,5 +5,7 @@ layui.extend({
     view: "lib/view"
 }).define(["setter", "admin"],
     function(e) {
+        e("indexs", {
 
+        })
     });

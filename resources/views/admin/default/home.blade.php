@@ -46,7 +46,7 @@
     </div>
 </div>
 <div class="layui-layer-shade" id="layui-layer-shade2" times="2" style="z-index: 19891015; background-color: rgb(0, 0, 0); opacity: 0.1; display: none" ></div>
-<div class="layui-layer layui-layer-page layui-anim layui-anim-rl layui-layer-adminRight" id="layui-layer2" type="page" times="2" showtime="0" contype="string" style="z-index: 19891016; width: 300px; top: 25px; left: 1620px; display: none">
+<div class="layui-layer layui-layer-page layui-anim layui-anim-rl layui-layer-adminRight" id="layer2" type="page" times="2" showtime="0" contype="string" style="z-index: 19891016; width: 300px; top: 25px; left: 1620px; display: none">
 <div id="LAY_adminPopupAbout" class="layui-layer-content">
     <div class="layui-card-header">公告</div>
     <div class="layui-card-body layui-text layadmin-about">
@@ -68,7 +68,7 @@
     });
     layui.use(['jquery','layer'],function (e) {
         $('#layui-layer-shade2').on('click',function(){
-            $('#layui-layer2').addClass("layui-anim-lr").removeClass("layui-anim-rl");
+            $('#layer2').addClass("layui-anim-lr").removeClass("layui-anim-rl");
             $(this).hide();
         })
     })
@@ -85,9 +85,9 @@
             }
         }
         layui.onevent("about", "pop(filter)", function (params) {
-            $('#layui-layer2').show();
+            $('#layer2').show();
             $('#layui-layer-shade2').show();
-            $('#layui-layer2').addClass("layui-anim-rl").removeClass("layui-anim-lr");
+            $('#layer2').addClass("layui-anim-rl").removeClass("layui-anim-lr");
         });
 
         $('.layui-nav-item').on('click','a',function(){
