@@ -31,5 +31,7 @@ Route::group(['namespace' => 'Admin','middleware' => ['auth','breadcrumbs']], fu
     Route::resource('extend-crawler','CrawlerController');  //爬虫管理
     Route::resource('extend-qrcode','QrcodeController');  //二维码管理
     /*  ---------  设置路由  --------  */
-    Route::resource('setting','SettingController');  //设置
+    Route::resource('setting-web','SettingController');  //设置
+    Route::resource('setting-weixin','WeixinController');  //设置
+    Route::resource('setting-api','ApiController');  //设置
 });
