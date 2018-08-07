@@ -19,7 +19,7 @@
                     @if(isset($v['child']))
                     <dl class="layui-nav-child ">
                         @foreach($v['child'] as $ck=>$cv)
-                        <dd  {!! Request::is( ltrim($cv['url'],'/').'*') ? ' class="layui-this"' : '' !!}>
+                        <dd  {!! Request::is( ltrim($cv['url'],'/')) ? ' class="layui-this"' : '' !!}>
                             <a href="{{ url($cv['url']) }}">{{ $cv['title'] }}</a>
                         </dd>
                         @endforeach

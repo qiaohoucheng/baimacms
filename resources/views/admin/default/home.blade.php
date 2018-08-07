@@ -28,7 +28,7 @@
                 @endif
                 @if( isset($b) )
                     <span lay-separator="">/</span>
-                    <a href="{{ $jumpb }}">{{ $b }}</a>
+                    <a href="{{ url('/'.$jumpb) }}">{{ $b }}</a>
                 @endif
                 @if( isset($a) && isset($c) && $a!='')
                     <span lay-separator="">/</span>
