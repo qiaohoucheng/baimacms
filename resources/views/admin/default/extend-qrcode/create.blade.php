@@ -33,10 +33,11 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">缩略图</label>
                                 <div class="layui-input-block">
-                                    <input type="hidden" name="pic_id">
+                                    <input type="hidden" name="pic_id" id="pic_id">
                                     <button type="button" class="layui-btn layui-btn-sm" id="thumb-logo">
                                         <i class="layui-icon">&#xe67c;</i>上传图片
                                     </button>
+                                    <span class="layui-word-aux">（只支持PNG格式图片）</span>
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -100,15 +101,23 @@
                 ,layer = layui.layer
                 ,layedit = layui.layedit
                 ,upload = layui.upload;
-
+            var token = '{{ csrf_token() }}';
             //执行实例
             var uploadInst = upload.render({
-                elem: '#thumb-logo' //绑定元素
-                ,url: '/upload/' //上传接口
-                ,done: function(res){
-                    //上传完毕回调
-                }
-                ,error: function(){
+                elem: '#thumb-logo',
+                url: '/file/upload',
+                accept:'images',
+                exts:'png',
+                data: {
+                    _token:token
+                },
+                done: function(res){
+                    layer.msg(res.message);
+                    if(res.status ==1){
+                        $('#pic_id').val(res.data.pic_id);
+                    }
+                },
+                error: function(){
                     //请求异常回调
                 }
             });
