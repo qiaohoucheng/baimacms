@@ -34,4 +34,6 @@ Route::group(['namespace' => 'Admin','middleware' => ['auth','breadcrumbs']], fu
     Route::resource('setting-web','SettingController');  //设置
     Route::resource('setting-weixin','WeixinController');  //设置
     Route::resource('setting-api','ApiController');  //设置
+    /*  ---------  文件操作  --------  */
+    Route::post('file/upload','FilesController@upload');
 });
