@@ -41,8 +41,9 @@ class FilesController extends Controller
        }
        abort('404');
    }
-   public function download(Request $request)
+   public function download($filename,$path)
    {
-
+        $Cos = new Cos();
+        return $Cos->getObject($filename,$path);
    }
 }

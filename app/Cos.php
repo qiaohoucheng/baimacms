@@ -27,6 +27,7 @@ class Cos
     //上传文件
     public function putObject($object,$content)
     {
+        $content = file_get_contents($content);
         try {
             $this->Client->putObject(array('Bucket' =>$this->bucket, 'Key' => $object, 'Body' => $content));
 
@@ -35,5 +36,19 @@ class Cos
             echo $e->getMessage() . PHP_EOL;
         }
         return $this->Client->getObjectUrl($this->bucket,$object);
+    }
+
+    public function getObject($object,$local_path)
+    {
+        $arr = array(
+            'Bucket' => $this->bucket,
+            'Key' => $object
+        );
+
+        if(isset($local_path)){
+            $arr = array_merge($arr,array('SaveAs'=>$local_path));
+        }
+        $result = $this->Client->getObject($arr);
+        return $result['Body'];
     }
 }

@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use App\Model\Files;
+use Auth;
+use App\Model\Qrhistory;
 class QrcodeController extends Controller
 {
     protected $temp;
@@ -16,6 +19,7 @@ class QrcodeController extends Controller
     //:get
     public function index()
     {
+        
         return view( $this->temp );
     }
     //:get    :route /website/create
@@ -46,12 +50,38 @@ class QrcodeController extends Controller
         list($r,$g,$b) = explode(',',$color);
         list($br,$bg,$bb) = explode(',',$bgcolor);
         //->merge('/public/qrcodes/laravel.png',.15)
-        QrCode::format('png')
-            ->size($size)
-            ->color($r,$g,$b)
-            ->margin($margin)
-            ->backgroundColor($br,$bg,$bb)
-            ->generate($title,public_path('qrcodes/qrcode.png'));
+        if($request->input('pic_id')){
+            $file_model = Files::find($request->input('pic_id'));
+            $filename = Auth::user()->id.'.png';
+            $content = file_get_contents($file_model->url);
+            file_put_contents(public_path($filename),$content);
+            QrCode::format('png')
+                ->size($size)
+                ->merge('/public/'.$filename,.15)
+                ->color($r,$g,$b)
+                ->margin($margin)
+                ->backgroundColor($br,$bg,$bb)
+                ->generate($title,public_path('qrcodes/qrcode.png'));
+        }else{
+            QrCode::format('png')
+                ->size($size)
+                ->color($r,$g,$b)
+                ->margin($margin)
+                ->backgroundColor($br,$bg,$bb)
+                ->generate($title,public_path('qrcodes/qrcode.png'));
+        }
+        if(file_exists(public_path('qrcodes/qrcode.png'))){
+            $qrcode = new Qrhistory();
+
+            $qrcode->title = $title;
+            $qrcode->desc = $request->input('desc');
+            $qrcode->pic_id = $request->input('pic_id');
+            $qrcode->size = $size;
+            $qrcode->color = $request->input('color');
+            $qrcode->bgcolor = $request->input('bgcolor');
+            $qrcode->margin = $margin;
+            $qrcode->save();
+        }
         return array('code'=>1,'pic_url'=>'/qrcodes/qrcode.png');
 
     }

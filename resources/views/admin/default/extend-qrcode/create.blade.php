@@ -112,8 +112,9 @@
                     _token:token
                 },
                 done: function(res){
+                    console.log(res);
                     layer.msg(res.message);
-                    if(res.status ==1){
+                    if(res.code == 1){
                         $('#pic_id').val(res.data.pic_id);
                     }
                 },
