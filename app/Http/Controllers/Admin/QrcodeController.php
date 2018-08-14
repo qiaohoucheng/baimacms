@@ -17,9 +17,11 @@ class QrcodeController extends Controller
     }
 
     //:get
-    public function index()
+    public function index(Request $request)
     {
-        
+        if($request->ajax()){
+            return $this->dataFormat(new Qrhistory(),$request);
+        }
         return view( $this->temp );
     }
     //:get    :route /website/create
