@@ -28,4 +28,14 @@ class Controller extends BaseController
         );
         return $return;
     }
+    //简单返回
+    public function qhc($code,$message,$data='')
+    {
+        $return  = array(
+            'code' => $code,
+            'message'=>$message,
+            'data'=>$data
+        );
+        return  $return;
+    }
 }
