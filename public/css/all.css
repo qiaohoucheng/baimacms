@@ -4,3 +4,9 @@
 .pull-left{
     float: left;
 }
+#up {
+    max-width: 300px;
+}
+#up img{
+    width: 100%;
+}

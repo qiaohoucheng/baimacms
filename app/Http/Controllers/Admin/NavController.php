@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
-use App\Model\Menu;
-
-class MenuController extends Controller
+use App\Model\Nav;
+class NavController extends Controller
 {
+
     protected $temp;
     public function __construct(Request $request)
     {
@@ -19,7 +18,13 @@ class MenuController extends Controller
     public function index(Request $request)
     {
         if($request->ajax()){
-            return $this->dataFormat(new Menu(),$request);
+            $data = Nav::all();
+            $return = array(
+                'code'=>0,
+                'msg'=>'查询成功',
+                'data'=>$data,
+            );
+            return $return;
         }else{
             return view( $this->temp );
         }
@@ -28,18 +33,19 @@ class MenuController extends Controller
     //:get    :route /website/create
     public function create()
     {
-        return view( $this->temp );
+        $list = Nav::where('pid','0')->orderBy('sort','asc')->get()->toArray();
+        return view( $this->temp ,compact('list'));
     }
     //:post   :route /website
     public function store(Request $request)
     {
         if($request->input('title') && $request->input('url')){
-            $menu = new Menu;
+            $menu = new Nav;
             $menu->title = $request->input('title');
             $menu->url = $request->input('url');
-            $menu->sort = $request->input('sort');
-            $menu->pid = $request->input('pid');
-            $menu->is_hide = $request->input('is_hide');
+            $menu->sort = $request->input('sort',1);
+            $menu->pid = $request->input('pid',0);
+            $menu->is_hide = $request->input('is_hide',0);
             $menu->save();
             if($menu->id > 0){
                 $return['code'] = 1;
@@ -74,5 +80,4 @@ class MenuController extends Controller
     {
         return view( $this->temp );
     }
-
 }

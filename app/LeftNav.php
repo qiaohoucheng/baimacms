@@ -10,13 +10,13 @@ class LeftNav
 {
     public function getMenu()
     {
-        if(Cache::has('leftnav')){
-            $data = Cache::get('leftnav');
-            $data = json_decode($data,true);
-        }else{
+        //if(Cache::has('leftnav')){
+        //    $data = Cache::get('leftnav');
+        //    $data = json_decode($data,true);
+        //else{
             $data =  Menu::where('status',1)->where('is_hide',0)->orderBy('sort','asc')->get()->toArray();
             $data =  $this->toTree($data);
-        }
+       // }
         return $data;
     }
 

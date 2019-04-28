@@ -28,6 +28,40 @@ class Controller extends BaseController
         );
         return $return;
     }
+    public function dataFormatMany($model,$request,$where = array(),$with = null)
+    {
+        //初始化
+        $page  = $request->input('page') ? $request->input('page') : 1;
+        $limit = $request->input('limit')? $request->input('limit') : 20;
+        $field = $request->input('field')? $request->input('field') :'id';
+        $order = $request->input('order')? $request->input('order') :'desc';
+        $start = ($page-1) * $limit;
+        //判断是否有关键字
+        if(count($where) > 0){
+            $model = $model->where($where);
+        }
+        if($with != null){
+            $model = $model->with($with);
+        }
+        $data  = $model->offset($start)->limit($limit)->orderBy($field,$order)->get()->toArray();
+        $count = $model->where('status',1)->count();
+
+        $pages = ceil($count/$limit);
+        if($with != 0 ){
+            foreach ($data as $k=>&$item)
+            {
+                $item = array_merge($item,$item['options']);
+            }
+        }
+        $return = array(
+            'code'=>0,
+            'count'=>$count,
+            'msg'=>'查询成功',
+            'data'=>$data,
+            'pages'=>$pages,
+        );
+        return $return;
+    }
     //简单返回
     public function qhc($code,$message,$data='')
     {
