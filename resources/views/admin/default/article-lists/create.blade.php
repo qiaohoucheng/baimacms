@@ -22,22 +22,7 @@
                                 </div>
                             </div>
                             <div class="layui-form-item">
-                                <label class="layui-form-label">链接</label>
-                                <div class="layui-input-block">
-                                    <input type="text" name="link" autocomplete="off"  lay-verify="required" placeholder="请输入轮播图链接" class="layui-input">
-                                </div>
-                            </div>
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">图片</label>
-                                <div class="layui-input-block" style="padding-left:10px;">
-                                    <div class="layui-upload-drag" id="up">
-                                        <i class="layui-icon"></i>
-                                        <p>点击上传，或将文件拖拽到此处</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="layui-form-item">
-                            <textarea id="demo" style="display: none;"></textarea>
+                            <textarea id="txt" style="display: none;"></textarea>
                             </div>
                             <div class="layui-form-item" pane="">
                                 <label class="layui-form-label">发布状态</label>
@@ -51,20 +36,52 @@
                                 <a class="layui-btn layui-btn-primary" href="{{ url('/website-carousel') }}">返回</a>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
             <div class="layui-col-md3">
-                <div class="layui-card">
-                    <div class="layui-card-header">
-                        <h3>基本信息</h3>
-                        <div class="pull-right">
+                <form class="layui-form layui-form-pane" action="{!!  '/website-carousel' !!}" method="POST" >
+                    <div class="layui-card">
+                        <div class="layui-card-header">
+                            <h3>分类目录</h3>
+                            <div class="pull-right">
+                            </div>
+                        </div>
+                        <div class="layui-card-body">
+                            <div class="layui-form-item">
+
+                                 <input type="text" name="title" autocomplete="off"  lay-verify="required" placeholder="请输入标题" class="layui-input">
+                            </div>
                         </div>
                     </div>
-                    <div class="layui-card-body">
+                    <div class="layui-card">
+                        <div class="layui-card-header">
+                            <h3>标签</h3>
+                            <div class="pull-right">
+                            </div>
+                        </div>
+                        <div class="layui-card-body">
+                            <div class="layui-form-item">
+                                <input type="text" name="title" autocomplete="off"  lay-verify="required" placeholder="请输入标题" class="layui-input">
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    <div class="layui-card">
+                        <div class="layui-card-header">
+                            <h3>展示图片</h3>
+                            <div class="pull-right">
+                            </div>
+                        </div>
+                        <div class="layui-card-body">
+                            <div class="layui-form-item " style="text-align: center">
+                                <div class="layui-upload-drag" id="up">
+                                    <i class="layui-icon"></i>
+                                    <p>点击上传，或将文件拖拽到此处</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -78,7 +95,17 @@
             var token = '{{ csrf_token() }}';
             var jumpurl = '/website-carousel';
             var layedit = layui.layedit;
-            layedit.build('demo'); //建立编辑器
+
+            layedit.set({
+                uploadImage: {
+                    url: '/file/upload'
+                    ,type: 'post' //默认post
+                    ,data:{'_token':token}
+                }
+            });
+            layedit.build('txt',{
+                height: 400
+            }); //建立编辑器
             upload.render({
                 elem: '#up'
                 ,url: '/file/upload'
