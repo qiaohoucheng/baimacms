@@ -7,12 +7,12 @@
             <div class="layui-col-md9">
                 <div class="layui-card">
                     <div class="layui-card-header">
-                        <h3>基本信息</h3>
+                        <h3>文章信息</h3>
                         <div class="pull-right">
                         </div>
                     </div>
                     <div class="layui-card-body">
-                        <form class="layui-form layui-form-pane" action="{!!  '/website-carousel' !!}" method="POST" id="banner_create">
+                        <form class="layui-form layui-form-pane" action="{!!  '/article-lists' !!}" method="POST" id="banner_create">
                             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                             <input type="hidden" name="pic_id" id="pic_id" value="0"/>
                             <div class="layui-form-item">
@@ -33,14 +33,14 @@
                             </div>
                             <div class="layui-form-item">
                                 <button class="layui-btn" lay-submit="" lay-filter="save">保存</button>
-                                <a class="layui-btn layui-btn-primary" href="{{ url('/website-carousel') }}">返回</a>
+                                <a class="layui-btn layui-btn-primary" href="{{ url('/article-lists') }}">返回</a>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
             <div class="layui-col-md3">
-                <form class="layui-form layui-form-pane" action="{!!  '/website-carousel' !!}" method="POST" >
+                <form class="layui-form layui-form-pane" action="{!!  '/article-lists' !!}" method="POST" >
                     <div class="layui-card">
                         <div class="layui-card-header">
                             <h3>分类目录</h3>
