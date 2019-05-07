@@ -65,7 +65,7 @@
             var layer = layui.layer;
             var token = '{{ csrf_token() }}';
             var treetable = layui.treetable;
-
+            var postUrl = '/website-nav/';
             treetable.render({
                 treeColIndex: 2,
                 treeSpid: 0,
@@ -74,7 +74,7 @@
                 treeDefaultClose: true,
                 treeLinkage: true,
                 elem: '#nav-table',
-                url: '/website-nav',
+                url: '',
                 cols: [[
                     {type: 'numbers'},
                     {field: 'id', width:60,title:'ID'},
@@ -92,51 +92,26 @@
             $('#btn-fold').click(function () {
                 treetable.foldAll('#nav-table');
             });
-            //监听select
-            form.on('select(status)', function(data){
-                window.location.href='/application/index?status='+data.value;
-            });
-            //监听表格复选框选择
-            table.on('checkbox(work)', function(obj){
-                //console.log(obj)
-            });
             //监听工具条
             table.on('tool(work)', function(obj){
                 var data = obj.data;
-                if(obj.event === 'detail'){
-                    window.location.href='/application/detail/'+data.zyaid;
-                }
                 if(obj.event === 'del'){
-                    layer.confirm('真的删除行么', function(index){
-                        obj.del();
+                    layer.confirm('真的删除这条数据吗', function(index){
+                        $.post(postUrl+data.id,{'id':data.id,'_token':token,'_method':'DELETE'},function(e){
+                            layer.msg(e.message);
+                            if(e.code ==200){
+                                obj.del();
+                                setTimeout(function(){//两秒后跳转
+                                    $(".layui-laypage-btn").click()
+                                },1000);
+                            }
+                        })
+                        //
                         layer.close(index);
                     });
                 }
                 if(obj.event === 'edit'){
-                    if(data.zyaid >0){
-                        var token = '{{ csrf_token() }}';
-                        layer.confirm('是否通过审核？', {
-                            btn: ['通过','拒绝'] //按钮
-                        }, function(){
-                            $.post('/application/review',{'id':data.zyaid,'_token':token,'status':2},function(obj){
-                                layer.msg(obj.message);
-                                if(obj.code ==1){
-                                    setTimeout(function(){//两秒后跳转
-                                        $(".layui-laypage-btn").click()
-                                    },2500);
-                                }
-                            })
-                        }, function(){
-                            $.post('/application/review',{'id':data.zyaid,'_token':token,'status':3},function(obj){
-                                layer.msg(obj.message);
-                                if(obj.code ==1){
-                                    setTimeout(function(){//两秒后跳转
-                                        $(".layui-laypage-btn").click()
-                                    },2500);
-                                }
-                            })
-                        });
-                    }
+
                     //layer.alert('编辑行：<br>'+ JSON.stringify(data))
                 }
             });

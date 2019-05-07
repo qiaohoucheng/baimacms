@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\User;
 class PowerController extends Controller
 {
     protected $temp;
@@ -14,8 +14,11 @@ class PowerController extends Controller
     }
 
     //:get
-    public function index()
+    public function index(Request $request)
     {
+        if($request->ajax()){
+            return  $this->dataFormatMany(new Link(),$request,[]);
+        }
         return view( $this->temp );
     }
     //:get    :route /website/create
