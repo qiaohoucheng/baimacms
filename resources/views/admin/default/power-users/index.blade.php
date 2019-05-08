@@ -14,7 +14,7 @@
                 <div class="layui-card">
                     <div class="layui-card-header">
                         <div class="pull-right">
-                            <a href="{{ url('/article-lists/create') }}" class="layui-btn layui-btn-sm" >添加管理员</a>
+                            <a href="{{ url('/power-users/create') }}" class="layui-btn layui-btn-sm" >添加管理员</a>
                         </div>
                     </div>
                     <div class="layui-card-body">
@@ -56,13 +56,13 @@
                 url:postUrl,
                 limit:'20',
                 cols: [[
-                    {field:'id', width:60, fixed: true,title:'ID'}
-                    ,{field:'name',  width:200,align:'center',title:'名称'}
+                    {field:'id', width:60,title:'ID'}
+                    ,{field:'name',  width:200,title:'姓名'}
                     ,{field:'email',title:'邮箱'}
                     ,{field:'permissions',title:'角色'}
-                    ,{field:'created_at', width:200,title:'创建时间'}
-                    ,{field:'status', width:150,align:'center',title:'状态', templet:'#sbox'}
-                    ,{fixed:'right', width:300,align:'center', toolbar: '#barDemo',title:'操作'}
+                    ,{field:'created_at' ,title:'创建时间'}
+                    ,{field:'status',title:'状态', templet:'#sbox'}
+                    ,{fixed:'right',align:'center', toolbar: '#barDemo',title:'操作'}
                 ]],
                 done: function(res){
 
