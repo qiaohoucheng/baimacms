@@ -6,7 +6,7 @@ use App\Model\Article;
 use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Support\Facades\DB;
-
+use App\Model\Category;
 class ArticleController extends Controller
 {
     protected $temp;
@@ -19,12 +19,16 @@ class ArticleController extends Controller
     //:get
     public function index()
     {
+
         return view( $this->temp );
     }
     //:get    :route /website/create
     public function create()
     {
-        return view( $this->temp );
+        $category = Category::all()->toArray();
+        $category_tree  =$this->list_to_tree($category);
+
+        return view( $this->temp ,compact('category_tree'));
     }
     //:post   :route /website
     public function store(Request $request)
@@ -37,16 +41,20 @@ class ArticleController extends Controller
             'title.required' => '请添加标题',
             'content.required' => '请添加内容',
         ];
-        $validator = Validator::make($request->input(), $rules, $message);
+        $post = $request->input('element');
+        $validator = Validator::make($post, $rules, $message);
         if ($validator->fails()){
             return $this->qhc(0,'缺少参数');
         }else{
             $post = $request->input();
-            unset($post['_token']);
-            $post['mid'] =   $request->get('mid') ?  $request->get('mid') : 0;
             $r = Article::create($post);
             if(isset($r->id) && $r->id >0){
                 Article::where('id',$r->id)->update(['sort'=>$r->id]);
+                if(isset($post['tags'])){
+                    foreach ($post['tags'] as $k =>$v){
+
+                    }
+                }
                 return $this->qhc(200,'新建成功！');
             }else{
                 return $this->qhc(1001,'新建失败！');

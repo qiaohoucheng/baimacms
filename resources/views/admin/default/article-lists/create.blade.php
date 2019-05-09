@@ -12,17 +12,17 @@
                         </div>
                     </div>
                     <div class="layui-card-body">
-                        <form class="layui-form layui-form-pane" action="{!!  '/article-lists' !!}" method="POST" id="banner_create">
+                        <form class="layui-form layui-form-pane" action="{!!  '/article-lists' !!}" method="POST" id="article_create">
                             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                             <input type="hidden" name="pic_id" id="pic_id" value="0"/>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">标题</label>
                                 <div class="layui-input-block">
-                                    <input type="text" name="title" autocomplete="off"  lay-verify="required" placeholder="请输入标题" class="layui-input">
+                                    <input type="text" name="title" autocomplete="off"  lay-verify="required" placeholder="请输入标题" class="layui-input" id="title">
                                 </div>
                             </div>
                             <div class="layui-form-item">
-                            <textarea id="txt" style="display: none;"></textarea>
+                                <span id="txt"></span>
                             </div>
                             <div class="layui-form-item" pane="">
                                 <label class="layui-form-label">发布状态</label>
@@ -49,8 +49,18 @@
                         </div>
                         <div class="layui-card-body">
                             <div class="layui-form-item">
+                                <select name="interest" lay-filter="category" id="category">
+                                    <option value=""></option>
+                                    @foreach($category_tree as $k =>$v)
+                                        <option value="{{ $v['id'] }}">{{ $v['title'] }}</option>
+                                        @if(isset($v['_child']))
+                                            @foreach($v['_child'] as $kk =>$vv)
+                                                <option value="{{ $v['id'] }}">{!! '&nbsp;&nbsp;'.$vv['title'] !!} </option>
+                                            @endforeach
+                                        @endif
 
-                                 <input type="text" name="title" autocomplete="off"  lay-verify="required" placeholder="请输入标题" class="layui-input">
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -62,7 +72,9 @@
                         </div>
                         <div class="layui-card-body">
                             <div class="layui-form-item">
-                                <input type="text" name="title" autocomplete="off"  lay-verify="required" placeholder="请输入标题" class="layui-input">
+                                <div  class="tags" id="tags">
+                                    <input type="text" name="tags" id="inputTags" placeholder="回车生成标签" autocomplete="off">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -85,27 +97,53 @@
             </div>
         </div>
     </div>
-
+    <script type="text/javascript" src="/plugins/wangEditor/release/wangEditor.min.js"></script>
     <script>
-        layui.use(['form','upload','jquery','layedit'], function(){
+        var token ='{{ csrf_token() }}';
+        var E = window.wangEditor;
+        var editor = new E('#txt');
+        editor.customConfig.uploadImgServer = '/file/upload';  // 上传图片到服务器
+        // 3M
+        editor.customConfig.uploadImgMaxSize = 5 * 1024 * 1024;
+        // 限制一次最多上传 5 张图片
+        editor.customConfig.uploadImgMaxLength = 5;
+        // 自定义文件名
+        editor.customConfig.uploadFileName = 'file';
+        editor.customConfig.uploadImgTimeout = 5000;
+        editor.customConfig.uploadImgParams = {
+            _token: token,
+            is_editor:1,
+        }
+        editor.create();
+        layui.use(['form','upload','jquery','layedit','inputTags'], function(){
             var form = layui.form;
             var layer = layui.layer;
             var $ = layui.jquery;
             var upload = layui.upload;
             var token = '{{ csrf_token() }}';
             var jumpurl = '/website-carousel';
-            var layedit = layui.layedit;
-
-            layedit.set({
-                uploadImage: {
-                    url: '/file/upload'
-                    ,type: 'post' //默认post
-                    ,data:{'_token':token}
+            var inputTags = layui.inputTags;
+            var tagsclass = inputTags.render({
+                elem:'#inputTags',
+                content: [],
+                aldaBtn: false,
+                done: function(value){
+                    //console.log(value)
+                    //console.log(tagsclass.config.content);
                 }
-            });
-            layedit.build('txt',{
-                height: 400
-            }); //建立编辑器
+            })
+//            var layedit = layui.layedit;
+//
+//            layedit.set({
+//                uploadImage: {
+//                    url: '/file/upload'
+//                    ,type: 'post' //默认post
+//                    ,data:{'_token':token}
+//                }
+//            });
+//            layedit.build('txt',{
+//                height: 400
+//            }); //建立编辑器
             upload.render({
                 elem: '#up'
                 ,url: '/file/upload'
@@ -134,8 +172,19 @@
             //监听提交
             form.on('submit(save)', function(data){
                 var thisform = $('#banner_create');
-                console.log(JSON.stringify(data.field));
-                $.post(thisform.attr('action'),data.field,function(data){
+                var ele ={};
+                ele.title = $('#title').val();
+                ele.content = editor.txt.html();
+                ele.category_id= $('#category').val();
+                ele.tags = tagsclass.config.content;
+                ele.pic_id =$('#pic_id').val();
+                var obj = {
+                    _token:token,
+                    element:ele,
+                }
+                console.log(obj);
+                return false;
+                $.post(thisform.attr('action'),obj,function(data){
                     layer.msg(data.message);
                     if(data.code ==200){
                         setTimeout(function(){//两秒后跳转

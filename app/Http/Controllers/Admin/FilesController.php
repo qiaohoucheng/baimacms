@@ -12,6 +12,7 @@ class FilesController extends Controller
    {
        //1.获取文件
        $file = $request->file('file');
+       $is_editor = $request->input('is_editor',0);
        if($file -> isValid()){
            //2 判断文件是否上传过  true -> 5  false -> 3
            $file_model = Files::firstOrNew(['md5'=>md5_file($file->getPathname())]);
@@ -38,7 +39,12 @@ class FilesController extends Controller
                    return array('code'=>0,'message'=>'上传失败');
                }
            }
-           return array('code'=>1,'message'=>'上传成功','data'=>array('pic_id' => $file_model->id));
+           if($is_editor ==1){
+               return array('errno'=>0,'message'=>'上传成功','data'=>array($file_model->url));
+           }else{
+               return array('code'=>1,'message'=>'上传成功','data'=>array('pic_id' => $file_model->id));
+           }
+
            //5.返回图片信息
        }
        abort('404');

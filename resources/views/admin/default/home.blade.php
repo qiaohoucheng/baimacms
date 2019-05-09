@@ -55,7 +55,8 @@
         admin: "lib/admin",
         view: "lib/view",
         treetable:"treetable-lay/treetable",
-    }).use(["setter","admin","treetable"],function(){
+        inputTags:"lib/input-tags/inputTags"
+    }).use(["setter","admin","treetable","inputTags"],function(){
         //var treetable = layui.treetable;
         //console.log(treetable);
     });
