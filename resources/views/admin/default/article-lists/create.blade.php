@@ -120,8 +120,7 @@
             var layer = layui.layer;
             var $ = layui.jquery;
             var upload = layui.upload;
-            var token = '{{ csrf_token() }}';
-            var jumpurl = '/website-carousel';
+            var jumpurl = '/article-lists';
             var inputTags = layui.inputTags;
             var tagsclass = inputTags.render({
                 elem:'#inputTags',
@@ -171,7 +170,6 @@
             });
             //监听提交
             form.on('submit(save)', function(data){
-                var thisform = $('#banner_create');
                 var ele ={};
                 ele.title = $('#title').val();
                 ele.content = editor.txt.html();
@@ -182,9 +180,8 @@
                     _token:token,
                     element:ele,
                 }
-                console.log(obj);
-                return false;
-                $.post(thisform.attr('action'),obj,function(data){
+
+                $.post(data.form.action,obj,function(data){
                     layer.msg(data.message);
                     if(data.code ==200){
                         setTimeout(function(){//两秒后跳转

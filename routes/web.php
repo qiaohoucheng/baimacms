@@ -35,8 +35,10 @@ Route::group(['namespace' => 'Admin','middleware' => ['auth','breadcrumbs']], fu
     Route::resource('extend-qrcode','QrcodeController');  //二维码管理
     /*  ---------  设置路由  --------  */
     Route::resource('setting-web','SettingController');  //设置
-    Route::resource('setting-weixin','WeixinController');  //设置
-    Route::resource('setting-api','ApiController');  //设置
+    Route::resource('setting-weixin','WeixinController');  //微信设置
+    Route::resource('setting-api','ApiController');  //api设置
+    Route::resource('setting-user/info','UserInfoController');  //个人信息 基本设置
+    Route::resource('setting-user/password','UserPasswordController');  //修改密码
     /*  ---------  文件操作  --------  */
     Route::post('file/upload','FilesController@upload');
 });

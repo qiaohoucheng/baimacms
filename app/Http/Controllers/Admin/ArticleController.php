@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Model\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use Illuminate\Support\Facades\DB;
 use App\Model\Category;
+
 class ArticleController extends Controller
 {
     protected $temp;
@@ -17,9 +19,11 @@ class ArticleController extends Controller
     }
 
     //:get
-    public function index()
+    public function index(Request $request)
     {
-
+        if($request->ajax()){
+            return  $this->dataFormatMany(new Article(),$request,[],'category');
+        }
         return view( $this->temp );
     }
     //:get    :route /website/create
@@ -33,6 +37,7 @@ class ArticleController extends Controller
     //:post   :route /website
     public function store(Request $request)
     {
+        $user = Auth::user();
         $rules = [
             'title'=>'required',
             'content'=>'required',
@@ -46,15 +51,13 @@ class ArticleController extends Controller
         if ($validator->fails()){
             return $this->qhc(0,'缺少参数');
         }else{
-            $post = $request->input();
+            if(isset($post['tags'])){
+                $post['tags'] = implode(',',$post['tags']);
+            }
+            $post['u_id'] = $user->id;
+            //dd($post);
             $r = Article::create($post);
             if(isset($r->id) && $r->id >0){
-                Article::where('id',$r->id)->update(['sort'=>$r->id]);
-                if(isset($post['tags'])){
-                    foreach ($post['tags'] as $k =>$v){
-
-                    }
-                }
                 return $this->qhc(200,'新建成功！');
             }else{
                 return $this->qhc(1001,'新建失败！');
@@ -74,7 +77,9 @@ class ArticleController extends Controller
     public function edit($id)
     {
         $info = Article::with('post')->find($id)->toArray();
-        return view( $this->temp ,compact('id','info'));
+        $category = Category::all()->toArray();
+        $category_tree  =$this->list_to_tree($category);
+        return view( $this->temp ,compact('id','info','category_tree'));
     }
     public function update(Request $request,$id)
     {

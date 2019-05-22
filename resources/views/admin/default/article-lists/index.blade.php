@@ -26,16 +26,17 @@
                                 <img src="@{{  d.post.url }}">
                             </div>
                         </script>
-                        <script type="text/html" id="sbox">
-                            @{{#  if(d.status == 1){ }}
+                        <script type="text/html" id="tagsbox">
+
+                     </script>
+                     <script type="text/html" id="sbox">
+                         @{{#  if(d.status == 1){ }}
                             <span class=" layui-badge layui-bg-blue">发布</span>
                             @{{#  }else{ }}
                             <span class=" layui-badge layui-bg-red">未发布</span>
                             @{{#  } }}
                         </script>
                         <script type="text/html" id="barDemo">
-                            <a class="layui-btn layui-btn-sm layui-btn-primary up" data-id="@{{ d.id }}" lay-event="up">向上</a>
-                            <a class="layui-btn layui-btn-sm layui-btn-primary down" lay-event="down">向下</a>
                             <a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
                             <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del">删除</a>
                         </script>
@@ -50,20 +51,41 @@
             var table = layui.table;
             var layer = layui.layer;
             var token = '{{ csrf_token() }}';
-            var postUrl = '/website-carousel';
+            var postUrl = '/article-lists';
             //获取数据
             table.render({
                 elem: '#bannerTable',
                 page:{curr: location.hash.replace('#!page=', ''),hash:'page'},
                 url:postUrl,
                 limit:'20',
-                where:{field:'sort'},
+                where:{field:'id'},
                 cols: [[
                     {field:'id', width:60, fixed: true,title:'ID'}
-                    ,{field:'pic_id', width:150,title:'轮播图', templet:'#picbox',}
-                    ,{field:'title',  width:200,align:'center',title:'标题'}
-                    ,{field:'link',title:'链接'}
+                    ,{field:'title',  width:300,align:'center',title:'标题'}
+                    ,{field:'category_id',title:'分类',templet:function(d){
+                        if(d.category_id >0){
+                            var name =  d.category.title;
+                            return name;
+                        }
+                        return '';
+                    }}
+                    ,{field:'tags',title:'标签', templet:function(d){
+                        var tags_arr = new Array();
+                        if(d.tags){
+                            tags_arr = d.tags.split(",");
+                            if(tags_arr.length > 0){
+                                var html='<div>';
+                                $.each(tags_arr,function(i,v){
+                                    html+='<span class=" layui-badge layui-bg-gray">'+v+'</span> ';
+                                })
+                                html+='</div>';
+                                return html;
+                            }
+                        }
+                        return '';
+                    }}
                     ,{field:'created_at', width:200,title:'创建时间'}
+                    ,{field:'weight',title:'权重'}
                     ,{field:'status', width:150,align:'center',title:'状态', templet:'#sbox'}
                     ,{fixed:'right', width:300,align:'center', toolbar: '#barDemo',title:'操作'}
                 ]],

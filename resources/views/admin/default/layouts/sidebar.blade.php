@@ -19,9 +19,26 @@
                     @if(isset($v['child']))
                     <dl class="layui-nav-child ">
                         @foreach($v['child'] as $ck=>$cv)
-                        <dd  {!! Request::is( ltrim($cv['url'],'/').'*') ? ' class="layui-this"' : '' !!}>
-                            <a href="{{ url($cv['url']) }}">{{ $cv['title'] }}</a>
-                        </dd>
+                            @if(isset($cv['child']))
+                            <li class="layui-nav-item {!! Request::is(ltrim($cv['url'],'/').'*') ? ' layui-nav-itemed' : '' !!}">
+                                <a href="javascript:;" lay-tips="{{ $cv['title'] }}" lay-direction="{{ $cv['id'] }}">
+                                    <cite>{{ $cv['title'] }}</cite>
+                                    <span class="layui-nav-more"></span>
+                                </a>
+                                @foreach($cv['child'] as $dk=>$dv)
+                                    <dl class="layui-nav-child ">
+                                        <dd  {!! Request::is( ltrim($dv['url'],'/').'*') ? ' class="layui-this"' : '' !!}>
+                                            <a href="{{ url($dv['url']) }}">{{ $dv['title'] }}</a>
+                                        </dd>
+                                    </dl>
+                                @endforeach
+                            </li>
+                            @else
+                                <dd  {!! Request::is( ltrim($cv['url'],'/').'*') ? ' class="layui-this"' : '' !!}>
+                                <a href="{{ url($cv['url']) }}">{{ $cv['title'] }}</a>
+                                </dd>
+                            @endif
+
                         @endforeach
                     </dl>
                     @endif
