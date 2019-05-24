@@ -126,7 +126,7 @@
             var tags = '{{ $info['tags'] }}';
             var tagsclass = inputTags.render({
                 elem:'#inputTags',
-                content: [],
+                content: tags,
                 aldaBtn: false,
                 done: function(value){
                     //console.log(value)

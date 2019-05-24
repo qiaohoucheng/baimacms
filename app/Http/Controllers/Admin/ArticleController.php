@@ -77,6 +77,9 @@ class ArticleController extends Controller
     public function edit($id)
     {
         $info = Article::with('post')->find($id)->toArray();
+        if(isset($info['tags'])){
+            $info['tags']= explode(',',$info['tags']);
+        }
         $category = Category::all()->toArray();
         $category_tree  =$this->list_to_tree($category);
         return view( $this->temp ,compact('id','info','category_tree'));
