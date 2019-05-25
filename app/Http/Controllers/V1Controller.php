@@ -86,7 +86,9 @@ class V1Controller extends Controller
             }
             $data['prev'] = $this->getPrevArticleId($id);
             $data['next'] = $this->getNextArticleId($id);
-            $data['list'] = Article::orderBy('id','desc')->take(5)->get()->toArray();
+            $data['list'] = Article::where('status',1)
+                ->where('is_del',0)
+                ->orderBy('id','desc')->take(5)->get()->toArray();
             return $this->qhc('200','success',$data);
         }
         return $this->qhc('1001','error');
