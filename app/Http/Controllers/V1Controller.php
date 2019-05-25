@@ -96,6 +96,8 @@ class V1Controller extends Controller
     protected function getPrevArticleId($id)
     {
         return Article::where('id', '<', $id)
+            ->where('status',1)
+            ->where('is_del',0)
             ->select('id','title')
             ->orderBy('id','desc')
             ->first();
@@ -104,6 +106,8 @@ class V1Controller extends Controller
     protected function getNextArticleId($id)
     {
         return Article::where('id', '>', $id)
+            ->where('status',1)
+            ->where('is_del',0)
             ->select('id','title')
             ->orderBy('id','desc')
             ->first();
