@@ -12,9 +12,9 @@
                         </div>
                     </div>
                     <div class="layui-card-body">
-                        <form class="layui-form layui-form-pane" action="{!!  '/article-lists' !!}" method="POST" id="article_create">
+                        <form class="layui-form layui-form-pane" action="{!! url('/article-lists/'.$id) !!} " method="POST" id="article_create">
                             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                            <input type="hidden" name="pic_id" id="pic_id" value="0"/>
+                            <input type="hidden" name="pic_id" id="pic_id" value="{{ $info['pic_id'] }}"/>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">标题</label>
                                 <div class="layui-input-block">
@@ -23,6 +23,12 @@
                             </div>
                             <div class="layui-form-item">
                                 <span id="txt"></span>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">权重</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="weight" autocomplete="off"  lay-verify="required|number" placeholder="请输入权重" class="layui-input" id="weight" value="{{ $info['weight'] }}">
+                                </div>
                             </div>
                             <div class="layui-form-item" pane="">
                                 <label class="layui-form-label">发布状态</label>
@@ -58,7 +64,6 @@
                                                 <option value="{{ $vv['id'] }}" @if($info['category_id'] == $vv['id'] )  selected @endif>{!! '&nbsp;&nbsp;'.$vv['title'] !!} </option>
                                             @endforeach
                                         @endif
-
                                     @endforeach
                                 </select>
                             </div>
@@ -87,8 +92,13 @@
                         <div class="layui-card-body">
                             <div class="layui-form-item " style="text-align: center">
                                 <div class="layui-upload-drag" id="up">
+                                @if(isset($info['post']))
+                                    <img src="{{ $info['post']['url'] }}" alt="" width="100%">
+                                @else
                                     <i class="layui-icon"></i>
                                     <p>点击上传，或将文件拖拽到此处</p>
+
+                                @endif
                                 </div>
                             </div>
                         </div>
@@ -123,10 +133,9 @@
             var upload = layui.upload;
             var jumpurl = '/article-lists';
             var inputTags = layui.inputTags;
-            var tags = '{{ $info['tags'] }}';
             var tagsclass = inputTags.render({
                 elem:'#inputTags',
-                content: tags,
+                content: {!! json_encode($info['tags']) !!} ,
                 aldaBtn: false,
                 done: function(value){
                     //console.log(value)
@@ -175,11 +184,13 @@
                 var ele ={};
                 ele.title = $('#title').val();
                 ele.content = editor.txt.html();
-                ele.category_id= $('#category').val();
+                ele.category_id = $('#category').val() ? $('#category').val() : 0 ;
                 ele.tags = tagsclass.config.content;
                 ele.pic_id =$('#pic_id').val();
+                ele.weight =$('#weight').val();
                 var obj = {
                     _token:token,
+                    _method:'PUT',
                     element:ele,
                 }
 

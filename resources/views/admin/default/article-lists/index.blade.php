@@ -58,12 +58,12 @@
                 page:{curr: location.hash.replace('#!page=', ''),hash:'page'},
                 url:postUrl,
                 limit:'20',
-                where:{field:'id'},
+                where:{field:'weight'},
                 cols: [[
                     {field:'id', width:60, fixed: true,title:'ID'}
                     ,{field:'title',  width:300,align:'center',title:'标题'}
                     ,{field:'category_id',title:'分类',templet:function(d){
-                        if(d.category_id >0){
+                        if(d.category_id >0 && d.category){
                             var name =  d.category.title;
                             return name;
                         }
@@ -85,7 +85,7 @@
                         return '';
                     }}
                     ,{field:'created_at', width:200,title:'创建时间'}
-                    ,{field:'weight',title:'权重'}
+                    ,{field:'weight',title:'权重',align:'center'}
                     ,{field:'status', width:150,align:'center',title:'状态', templet:'#sbox'}
                     ,{fixed:'right', width:300,align:'center', toolbar: '#barDemo',title:'操作'}
                 ]],
@@ -96,7 +96,7 @@
             table.on('tool(banner)', function(obj){
                 var data = obj.data;
                 if(obj.event === 'del'){
-                    layer.confirm('您确定要删除这条轮播图吗？', function(index){
+                    layer.confirm('您确定要删除这篇文章吗？', function(index){
                         $.post(postUrl+'/'+data.id,{'id':data.id,'_token':token,'_method':'DELETE'},function(e){
                             layer.msg(e.message);
                             if(e.code ==200){
