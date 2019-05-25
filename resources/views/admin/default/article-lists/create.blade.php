@@ -173,7 +173,7 @@
                 var ele ={};
                 ele.title = $('#title').val();
                 ele.content = editor.txt.html();
-                ele.category_id= $('#category').val();
+                ele.category_id= $('#category').val() ? $('#category').val() :0;
                 ele.tags = tagsclass.config.content;
                 ele.pic_id =$('#pic_id').val();
                 var obj = {

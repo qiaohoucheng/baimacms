@@ -16,18 +16,55 @@ class V1Controller extends Controller
     }
     //轮播图
     public function get_banner(){
-        $data = Carousel::where('status',1)->orderBy('sort','desc')->get()->toArray();
+        $data = Carousel::where('status',1)->with(['post'])->orderBy('sort','desc')->get()->toArray();
+        foreach ($data as $k=>&$v){
+            $v['name'] ='了解智能变运维管理方案';
+            if(isset($v['post'])){
+                $v['img'] = $v['post']['url'];
+            }else{
+                $v['img'] ='';
+            }
+        }
         return $this->qhc('200','success',$data);
     }
     //成功案例
     public function get_link(){
-        $data = Link::where('status',1)->orderBy('sort','desc')->get()->toArray();
+        $data = Link::where('status',1)->with(['post'])->orderBy('sort','desc')->get()->toArray();
+        foreach ($data as $k=>&$v){
+            if(isset($v['post'])){
+                $v['img'] = $v['post']['url'];
+            }else{
+                $v['img'] ='';
+            }
+        }
         return $this->qhc('200','success',$data);
     }
     //文章列表
     public function post_lists(){
-        $data = Article::where('status',1)->with(['post','category'])->select('id','title','category_id','pic_id','created_at as date')->orderBy('weight','desc')->orderBy('id','desc')->take('5')->get()->toArray();
-        foreach ($data as $k=>&$v){
+        $data['first'] = Article::where('status',1)
+            ->where('is_del',0)
+            ->with(['post'])
+            ->select('id','title','pic_id','created_at as date')
+            ->orderBy('weight','desc')
+            ->orderBy('id','desc')
+            ->first()
+            ->toArray();
+        $data['list']  = Article::where('status',1)
+            ->where('is_del',0)
+            ->with(['category'])
+            ->select('id','title','category_id','pic_id','created_at as date')
+            ->orderBy('weight','desc')
+            ->orderBy('id','desc')
+            ->skip(1)
+            ->take('4')
+            ->get()
+            ->toArray();
+        if($data['first']){
+            if(isset($data['first']['post'])){
+                $data['first']['img'] = $data['first']['post']['url'];
+            }
+        }
+        foreach ($data['list'] as $k=>&$v){
             if(isset($v['category'])){
                 $v['type'] = $v['category']['title'];
             }else{
@@ -41,10 +78,12 @@ class V1Controller extends Controller
         return $this->qhc('200','success',$data);
     }
     //文章详情
-    public function post_detail(Request $request){
-        $id = $request->input('id');
+    public function post_detail($id){
         if($id >0){
             $data['info'] = Article::where('id',$id)->first()->toArray();
+            if($data['info']){
+                $data['info']['date'] = date('Y年m月d日',strtotime($data['info']['created_at']));
+            }
             $data['prev'] = $this->getPrevArticleId($id);
             $data['next'] = $this->getNextArticleId($id);
             $data['list'] = Article::orderBy('id','desc')->take(5)->get()->toArray();
@@ -54,11 +93,17 @@ class V1Controller extends Controller
     }
     protected function getPrevArticleId($id)
     {
-        return Article::where('id', '<', $id)->select('id','title')->take(1)->get();
+        return Article::where('id', '<', $id)
+            ->select('id','title')
+            ->orderBy('id','desc')
+            ->first();
     }
 
     protected function getNextArticleId($id)
     {
-        return Article::where('id', '>', $id)->select('id','title')->take(1)->get();
+        return Article::where('id', '>', $id)
+            ->select('id','title')
+            ->orderBy('id','desc')
+            ->first();
     }
 }

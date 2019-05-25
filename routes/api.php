@@ -31,5 +31,5 @@ Route::group(['prefix' => 'v1','middleware'=>'cros'], function () {
     //首页文章列表
     Route::get('post_lists', 'V1Controller@post_lists');
     //文章详情
-    Route::get('post_detail', 'V1Controller@post_detail');
+    Route::get('post_detail/{id}', 'V1Controller@post_detail');
 });
