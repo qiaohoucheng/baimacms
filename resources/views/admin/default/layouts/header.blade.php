@@ -6,7 +6,7 @@
         </a>
     </li>
     <li class="layui-nav-item layui-hide-xs"  >
-        <a href="http://www.layui.com/admin/" target="_blank" title="前台">
+        <a href="http://www.nanjingrongshu.com" target="_blank" title="前台">
             <i class="layui-icon layui-icon-website"></i>
         </a>
     </li>

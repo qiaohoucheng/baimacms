@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>{{ $page_title or "BaimaCMS" }}</title>
+    <title>{{ $page_title or "后台管理系统" }}</title>
     @include('admin.default.layouts.css')
     @yield('css')
     @include('admin.default.layouts.js')
