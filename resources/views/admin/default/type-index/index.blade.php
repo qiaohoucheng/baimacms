@@ -90,7 +90,25 @@
                         layer.close(index);
                     });
                 }
+                if(obj.event === 'edit'){
+                    layer.prompt({title: '请修改分类名称', formType: 0,value:data.title}, function(pass, index){
+                        layer.close(index);
+                        var formjson = {
+                            _token:token,
+                            _method:'PUT',
+                            text:pass,
+                        }
+                        $.post(postUrl+data.id,formjson,function(data){
+                            layer.msg(data.message);
+                            if(data.code ==200){
 
+                                setTimeout(function(){
+                                    window.location.reload();
+                                },1000);
+                            }
+                        })
+                    });
+                }
             });
         });
     </script>

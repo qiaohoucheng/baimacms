@@ -6,6 +6,7 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('breadcrum
 Route::group(['namespace' => 'Admin','middleware' => ['auth','breadcrumbs']], function(){
     /*  ---------  暂时路由  ----------*/
     Route::post('/website-carousel/move', 'CarouselController@move');//移动
+    Route::post('/website-link/move', 'LinkController@move');//移动
     /*  ---------  网站管理路由  --------  */
     Route::resource('website-nav','NavController'); //导航管理
     Route::resource('website-index','WebsiteController'); //首页管理

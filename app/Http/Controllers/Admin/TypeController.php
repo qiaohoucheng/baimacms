@@ -73,9 +73,23 @@ class TypeController extends Controller
         return view( $this->temp ,compact('id','info'));
     }
     //:put or patch  :route /website/{id}
-    public function save()
+    public function update(Request $request,$id)
     {
-
+        if($id >0){
+            $text = $request->input('text');
+            $cnt = Category::where('title',$text)->where('id','<>',$id)->count();
+            if($cnt >0){
+                return $this->qhc('1001','分类名称已存在！');
+            }
+            $Model = Category::find($id);
+            $Model->title = $text;
+            $r = $Model->save();
+            if($r){
+                return $this->qhc('200','修改成功！');
+            }else{
+                return $this->qhc('1001','修改失败！');
+            }
+        }
     }
     //:get   :route /webiste/{id}
     public function show()

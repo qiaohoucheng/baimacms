@@ -22,7 +22,7 @@ class ArticleController extends Controller
     public function index(Request $request)
     {
         if($request->ajax()){
-            return  $this->dataFormatMany(new Article(),$request,[],'category');
+            return  $this->dataFormatMany(new Article(),$request,['is_del'=>0],'category');
         }
         return view( $this->temp );
     }
@@ -68,7 +68,9 @@ class ArticleController extends Controller
     public function destroy(Request $request)
     {
         $post = Article::find($request->get('id'));
-        if($post->delete()){
+        $post->is_del = 1;
+        $r = $post->save();
+        if($r){
             return $this->qhc('200' ,'删除成功！');
         }
         return $this->qhc('1001','删除失败！');
@@ -77,15 +79,19 @@ class ArticleController extends Controller
     public function edit($id)
     {
         $info = Article::with('post')->find($id)->toArray();
-        if(isset($info['tags'])){
+        if(isset($info['tags']) && $info['tags']!=''){
             $info['tags']= explode(',',$info['tags']);
+        }else{
+            $info['tags']= array();
         }
+
         $category = Category::all()->toArray();
         $category_tree  =$this->list_to_tree($category);
         return view( $this->temp ,compact('id','info','category_tree'));
     }
     public function update(Request $request,$id)
     {
+        $user = Auth::user();
         $rules = [
             'title'=>'required',
             'content'=>'required',
@@ -94,13 +100,15 @@ class ArticleController extends Controller
             'title.required' => '请添加标题',
             'content.required' => '请添加内容',
         ];
-        $validator = Validator::make($request->input(), $rules, $message);
+        $post = $request->input('element');
+        $validator = Validator::make($post, $rules, $message);
         if ($validator->fails()){
             return $this->qhc(0,'缺少参数');
         }else{
-            $post['title'] = $request->input('title');
-            $post['pic_id'] = $request->input('pic_id');
-            $post['content'] = $request->input('content');
+            if(isset($post['tags'])){
+                $post['tags'] = implode(',',$post['tags']);
+            }
+            $post['u_id'] = $user->id;
             $r = Article::where('id',$id)->update($post);
             if($r >0){
                 return $this->qhc(200,'修改成功！');
