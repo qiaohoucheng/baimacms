@@ -42,8 +42,8 @@
             <span class="layui-nav-more"></span>
         </a>
         <dl class="layui-nav-child layui-anim layui-anim-upbit">
-            <dd><a href="set/user/info">基本资料</a></dd>
-            <dd><a href="set/user/password">修改密码</a></dd>
+            <dd><a href="{{ url('/setting-user/info') }}">基本资料</a></dd>
+            <dd><a href="{{ url('/setting-user/password') }}">修改密码</a></dd>
             <hr>
             <dd layadmin-event="logout" style="text-align: center;">
                 <a href="{{ url('/logout') }}" onclick="event.preventDefault();

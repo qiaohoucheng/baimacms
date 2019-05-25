@@ -17,9 +17,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix' => 'v1'], function () {
+Route::group(['prefix' => 'v1','middleware'=>'cros'], function () {
     Route::get('users', function () {
         echo '测试路由';
         exit;
     });
+    //基本信息
+    Route::get('getConfig', 'V1Controller@get_config');
+    //轮播图
+    Route::get('getBanner', 'V1Controller@get_banner');
+    //成功案例
+    Route::get('getLink', 'V1Controller@get_link');
+    //首页文章列表
+    Route::get('post_lists', 'V1Controller@post_lists');
+    //文章详情
+    Route::get('post_detail', 'V1Controller@post_detail');
 });

@@ -49,7 +49,6 @@
 
             //监听提交
             form.on('submit(create-btn)', function(data){
-                console.log(data);
                 $.post(data.form.action,data.field,function(data){
                     layer.msg(data.message);
                     if(data.code==1){

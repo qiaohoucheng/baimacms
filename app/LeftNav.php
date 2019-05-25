@@ -42,7 +42,7 @@ class LeftNav
     public function toArr($tree)
     {
         foreach ($tree as $k=>$v){
-            if($v['child']){
+            if(isset($v['child'])){
                 $arr = $v['child'];
                 foreach ($arr as $ck => $cv) {
                     $tree[$cv['id']] = $arr[$ck];

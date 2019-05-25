@@ -90,7 +90,6 @@
             //监听提交
             form.on('submit(save)', function(data){
                 var thisform = $('#banner_create');
-                console.log(JSON.stringify(data.field));
                 $.post(thisform.attr('action'),data.field,function(data){
                     layer.msg(data.message);
                     if(data.code ==200){
