@@ -28,6 +28,7 @@ class SettingController extends Controller
     //:post   :route /website
     public function store(Request $request)
     {
+
         $data = Setting::find(1);
         if(!$data){
             $data = new Setting();
@@ -58,6 +59,24 @@ class SettingController extends Controller
         }
         if($request->input('web_copyright')){
             $data->web_copyright = $request->input('web_copyright');
+        }
+        if($request->input('intro')){
+            $data->intro = $request->input('intro');
+        }
+        if($request->input('address')){
+            $data->address = $request->input('address');
+        }
+        if($request->input('tel')){
+            $data->tel = $request->input('tel');
+        }
+        if($request->input('fax')){
+            $data->fax = $request->input('fax');
+        }
+        if($request->input('mobile')){
+            $data->mobile = $request->input('mobile');
+        }
+        if($request->input('email')){
+            $data->email = $request->input('email');
         }
         $res = $data->save();
         if($res == true){

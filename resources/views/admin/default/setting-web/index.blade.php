@@ -24,6 +24,43 @@
                                 </div>
                             </div>
                             <div class="layui-form-item">
+                                <label class="layui-form-label">公司简介</label>
+                                <div class="layui-input-block">
+                                    <textarea name="intro" class="layui-textarea">{!! $data->intro or '这是公司简介' !!}</textarea>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">公司地址</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="address" value="{!! $data->address or '' !!}" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">总机</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="tel" value="{!! $data->tel or '' !!}" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">传真</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="fax" value="{!! $data->fax or '' !!}" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">售后电话</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="mobile" value="{!! $data->mobile or '' !!}" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">邮箱</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="email" value="{!! $data->email or '' !!}" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item">
                                 <label class="layui-form-label">缓存时间</label>
                                 <div class="layui-input-inline" style="width: 80px;">
                                     <input type="text" name="cache" lay-verify="number" value="{!! $data->cache or 0 !!}" class="layui-input">
