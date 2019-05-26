@@ -14,6 +14,8 @@ Route::group(['namespace' => 'Admin','middleware' => ['auth','breadcrumbs']], fu
     Route::resource('website-spread','SpreadController'); //推广管理
     Route::resource('website-main','MainController'); //精品推荐
     Route::resource('website-link','LinkController'); //友情链接
+    /*  ---------  页面管理路由  --------  */
+    Route::resource('page-index','PageController'); //首页管理
     /*  ---------  内容管理路由  --------  */
     Route::resource('article-lists','ArticleController'); //文章列表
     Route::resource('article-comment','ArticleController'); //评论管理

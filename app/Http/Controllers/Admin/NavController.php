@@ -19,16 +19,9 @@ class NavController extends Controller
     {
         if($request->ajax()){
             $data = Nav::all();
-            $return = array(
-                'code'=>0,
-                'msg'=>'查询成功',
-                'data'=>$data,
-            );
-            return $return;
-        }else{
-            return view( $this->temp );
+            return $this->qhc(0,'查询成功',$data);
         }
-
+        return view( $this->temp );
     }
     //:get    :route /website/create
     public function create()

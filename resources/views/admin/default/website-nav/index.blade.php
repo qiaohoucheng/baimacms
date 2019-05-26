@@ -74,7 +74,7 @@
                 treeDefaultClose: true,
                 treeLinkage: true,
                 elem: '#nav-table',
-                url: '',
+                url: postUrl,
                 cols: [[
                     {type: 'numbers'},
                     {field: 'id', width:60,title:'ID'},

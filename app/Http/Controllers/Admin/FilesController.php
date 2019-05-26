@@ -42,7 +42,7 @@ class FilesController extends Controller
            if($is_editor ==1){
                return array('errno'=>0,'message'=>'上传成功','data'=>array($file_model->url));
            }else{
-               return array('code'=>1,'message'=>'上传成功','data'=>array('pic_id' => $file_model->id));
+               return array('code'=>1,'message'=>'上传成功','data'=>array('pic_id' => $file_model->id,'url'=>$file_model->url));
            }
 
            //5.返回图片信息
