@@ -7,6 +7,7 @@ use App\Model\Setting;
 use App\Model\Carousel;
 use App\Model\Link;
 use App\Model\Article;
+use Illuminate\Support\Facades\DB;
 class V1Controller extends Controller
 {
     //基本信息
@@ -26,6 +27,22 @@ class V1Controller extends Controller
             }
         }
         return $this->qhc('200','success',$data);
+    }
+    //首页设置
+    public function  get_index_setting(){
+        $data = DB::table('page_data')->get()->toArray();
+        foreach ($data as $k =>$v){
+            if($v->content){
+                $arr['C_'.$v->num] = $v->content;
+            }
+            if($v->neirong){
+                $arr['E_'.$v->num] = $v->neirong;
+            }
+            if($v->link){
+                $arr['U_'.$v->num] = $v->link;
+            }
+        }
+        return $this->qhc('200','success',$arr);
     }
     //成功案例
     public function get_link(){

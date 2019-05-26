@@ -26,6 +26,7 @@ Route::group(['prefix' => 'v1','middleware'=>'cros'], function () {
     Route::get('getConfig', 'V1Controller@get_config');
     //轮播图
     Route::get('getBanner', 'V1Controller@get_banner');
+    Route::get('getIndex', 'V1Controller@get_index_setting');
     //成功案例
     Route::get('getLink', 'V1Controller@get_link');
     //首页文章列表
