@@ -7,6 +7,7 @@ Route::group(['namespace' => 'Admin','middleware' => ['auth','breadcrumbs']], fu
     /*  ---------  暂时路由  ----------*/
     Route::post('/website-carousel/move', 'CarouselController@move');//移动
     Route::post('/website-link/move', 'LinkController@move');//移动
+    Route::post('/website-case/move', 'CaseController@move');//移动
     /*  ---------  网站管理路由  --------  */
     Route::resource('website-nav','NavController'); //导航管理
     Route::resource('website-index','WebsiteController'); //首页管理
@@ -14,8 +15,13 @@ Route::group(['namespace' => 'Admin','middleware' => ['auth','breadcrumbs']], fu
     Route::resource('website-spread','SpreadController'); //推广管理
     Route::resource('website-main','MainController'); //精品推荐
     Route::resource('website-link','LinkController'); //友情链接
+    Route::resource('website-case','CaseController'); //成功案例
     /*  ---------  页面管理路由  --------  */
     Route::resource('page-index','PageController'); //首页管理
+    Route::resource('page-solutiona','PageSolutionaController'); //能源计量与计费管理
+    Route::resource('page-solutionb','PageSolutionbController'); //智能变配电运维管理
+    Route::resource('page-service','PageServiceController'); //服务中心
+    Route::resource('page-download','PageDownloadController'); //下载中心
     /*  ---------  内容管理路由  --------  */
     Route::resource('article-lists','ArticleController'); //文章列表
     Route::resource('article-comment','ArticleController'); //评论管理

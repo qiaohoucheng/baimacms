@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-class PageController extends Controller
+class PageDownloadController extends Controller
 {
-    //
+
     protected $temp;
     public function __construct(Request $request)
     {
@@ -18,7 +18,7 @@ class PageController extends Controller
     //:get
     public function index(Request $request)
     {
-        $data = DB::table('page_data')->where('module_id','1')->get()->toArray();
+        $data = DB::table('page_data')->where('module_id','2')->get()->toArray();
         foreach ($data as $k =>$v){
             if($v->content){
                 $arr['C_'.$v->num] = $v->content;
@@ -53,7 +53,7 @@ class PageController extends Controller
         }
         if(count($arr) >0){
             foreach ($arr as $index =>$item){
-                DB::table('page_data')->where('module_id','1')->where('num',$index)->update($item);
+                DB::table('page_data')->where('module_id','2')->where('num',$index)->update($item);
             }
         }
         return $this->qhc(0,'设置成功');

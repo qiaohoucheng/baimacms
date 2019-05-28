@@ -4,11 +4,12 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Link extends Model
+class Cases extends Model
 {
     //
+    protected $table = 'case';
     protected $fillable = [
-        'title', 'pic_id', 'url','sort','status'
+        'title', 'pic_id', 'intro','sort','status'
     ];
     public function post()
     {
