@@ -1,5 +1,10 @@
 @extends('admin.default.home')
 @section('css')
+    <style>
+        .layui-col-space15>* {
+            padding-bottom: 100px;
+        }
+    </style>
 @endsection
 @section('content')
     <div class="layui-fluid">
@@ -9,7 +14,7 @@
                     <div class="layui-card-header">
                     </div>
                     <div class="layui-card-body">
-                        <form class="layui-form" action="{!!  '/page-index' !!}"  method="POST" id="page_create">
+                        <form class="layui-form" action="{!!  '/page-solutiona' !!}"  method="POST" id="page_create">
                             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                         <table class="layui-table">
                             <colgroup>
@@ -32,15 +37,23 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td  rowspan="2" scope="col" bgcolor="#F7F7F7" align="center">首页中部</td>
-                                <td  align="center">标题名称</td>
-                                <td><input type="text" class="layui-input" name="C_00" id="C_00" value="{{ $arr['C_00'] or '' }}" /></td>
-                                <td><input type="text" class="layui-input" name="E_00" id="E_00" value="{{ $arr['E_00'] or '' }}" /></td>
-                                <td align="center">text</td>
-                                <td><input type="text" class="layui-input" name="U_00" id="U_00" value="{{ $arr['U_00'] or '' }}" /></td>
+                                <td  rowspan="3" scope="col" bgcolor="#F7F7F7" align="center">能源图标</td>
+                                <td  align="center">图标一</td>
+                                <td>
+                                    <button type="button" class="layui-btn upload-btn" name="C_00" id="C_00">
+                                        <i class="layui-icon"></i>上传文件</button>
+                                </td>
+                                <td>
+                                    <img src="{{ $arr['E_00'] or '' }}"  id="E_00_img" >
+                                    <input type="hidden" name="E_00" id="E_00" value="{{ $arr['E_00'] or '' }}">
+                                </td>
+                                <td align="center">img</td>
+                                <td>
+                                    <input type="text" class="layui-input" readonly="" name="U_00" id="U_00" value="{{ $arr['U_00'] or '' }}" />
+                                </td>
                             </tr>
                             <tr>
-                                <td  align="center">背景图片</td>
+                                <td  align="center">图标二</td>
                                 <td>
                                     <button type="button" class="layui-btn upload-btn" name="C_01" id="C_01">
                                         <i class="layui-icon"></i>上传文件</button>
@@ -55,39 +68,90 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td  rowspan="4" scope="col" bgcolor="#F7F7F7" align="center">首页切换卡</td>
-                                <td  align="center">标题（左）</td>
-                                <td><input type="text" class="layui-input" name="C_10" id="C_10" value="{{ $arr['C_10'] or '' }}" /></td>
-                                <td><input type="text" class="layui-input" name="E_10" id="E_10" value="{{ $arr['E_10'] or '' }}" /></td>
-                                <td align="center">text</td>
-                                <td><input type="text" class="layui-input" name="U_10" id="U_10" value="{{ $arr['U_10'] or '' }}" /></td>
+                                <td  align="center">图标三</td>
+                                <td>
+                                    <button type="button" class="layui-btn upload-btn" name="C_02" id="C_02">
+                                        <i class="layui-icon"></i>上传文件</button>
+                                </td>
+                                <td>
+                                    <img src="{{ $arr['E_02'] or '' }}"  id="E_02_img" >
+                                    <input type="hidden" name="E_02" id="E_02" value="{{ $arr['E_02'] or '' }}">
+                                </td>
+                                <td align="center">img</td>
+                                <td>
+                                    <input type="text" class="layui-input" readonly="" name="U_02" id="U_02" value="{{ $arr['U_02'] or '' }}" />
+                                </td>
                             </tr>
                             <tr>
-                                <td  align="center">图片（左）</td>
+                                <td  bgcolor="#F7F7F7" align="center">能源简介</td>
+                                <td  align="center">简介信息</td>
                                 <td>
-                                    <button type="button" class="layui-btn upload-btn" name="C_11" id="C_11"  value="{{ $arr['C_11'] or '' }}">
+                                    <input type="text" class="layui-input" name="C_10" id="C_10" value="{{ $arr['C_10'] or '' }}" />
+                                </td>
+                                <td>
+                                    <input type="text" class="layui-input" name="E_10" id="E_10" value="{{ $arr['E_10'] or '' }}" />
+                                </td>
+                                <td align="center">text</td>
+                                <td>
+                                    <input type="text" class="layui-input" readonly="" name="U_10" id="U_10" value="{{ $arr['U_10'] or '' }}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td  rowspan="3" scope="col" bgcolor="#F7F7F7" align="center">方案架构</td>
+                                <td  align="center">标题</td>
+                                <td><input type="text" class="layui-input" name="C_20" id="C_20" value="{{ $arr['C_20'] or '' }}" /></td>
+                                <td><input type="text" class="layui-input" name="E_20" id="E_20" value="{{ $arr['E_20'] or '' }}" /></td>
+                                <td align="center">text</td>
+                                <td><input type="text" class="layui-input" name="U_20" id="U_20" value="{{ $arr['U_20'] or '' }}" /></td>
+                            </tr>
+                            <tr>
+                                <td  align="center">图片</td>
+                                <td>
+                                    <button type="button" class="layui-btn upload-btn" name="C_21" id="C_21"  value="{{ $arr['C_21'] or '' }}">
                                     <i class="layui-icon"></i>上传文件</button>
                                 </td>
-                                <td><img src="{{ $arr['E_11'] or '' }}" id="E_11_img"><input type="hidden" name="E_11" id="E_11"  value="{{ $arr['E_11'] or '' }}"></td>
-                                <td align="center">img</td>
-                                <td><input type="text" class="layui-input"  name="U_11" id="U_11" value="{{ $arr['U_11'] or '' }}"  /></td>
-                            </tr>
-                            <tr>
-                                <td  align="center">标题（右）</td>
-                                <td><input type="text" class="layui-input" name="C_12" id="C_12" value="{{ $arr['C_12'] or '' }}" /></td>
-                                <td><input type="text" class="layui-input" name="E_12" id="E_12" value="{{ $arr['E_12'] or '' }}" /></td>
-                                <td align="center">text</td>
-                                <td><input type="text" class="layui-input" name="U_12" id="U_12"  value="{{ $arr['U_12'] or '' }}" /></td>
-                            </tr>
-                            <tr>
-                                <td  align="center">图片（右）</td>
                                 <td>
-                                    <button type="button" class="layui-btn upload-btn" name="C_13" id="C_13" >
-                                    <i class="layui-icon"></i>上传文件</button>
+                                    <img src="{{ $arr['E_21'] or '' }}" id="E_21_img">
+                                    <input type="hidden" name="E_21" id="E_21"  value="{{ $arr['E_21'] or '' }}">
                                 </td>
-                                <td><img src="{{ $arr['E_13'] or '' }}" id="E_13_img"><input type="hidden" name="E_13" id="E_13" value="{{ $arr['E_13'] or '' }}"></td>
                                 <td align="center">img</td>
-                                <td><input type="text" class="layui-input" name="U_13" id="U_13"  value="{{ $arr['U_13'] or '' }}" /></td>
+                                <td><input type="text" class="layui-input"  name="U_21" id="U_21" value="{{ $arr['U_21'] or '' }}"  /></td>
+                            </tr>
+                            <tr>
+                                <td  align="center">图片标题</td>
+                                <td><input type="text" class="layui-input" name="C_22" id="C_22" value="{{ $arr['C_22'] or '' }}" /></td>
+                                <td><input type="text" class="layui-input" name="E_22" id="E_22" value="{{ $arr['E_22'] or '' }}" /></td>
+                                <td align="center">text</td>
+                                <td><input type="text" class="layui-input" name="U_22" id="U_22" value="{{ $arr['U_22'] or '' }}" /></td>
+                            </tr>
+                            <tr>
+                                <td  rowspan="4" scope="col" bgcolor="#F7F7F7" align="center">方案说明</td>
+                                <td  align="center">标题</td>
+                                <td><input type="text" class="layui-input" name="C_30" id="C_30" value="{{ $arr['C_30'] or '' }}" /></td>
+                                <td><input type="text" class="layui-input" name="E_30" id="E_30" value="{{ $arr['E_30'] or '' }}" /></td>
+                                <td align="center">text</td>
+                                <td><input type="text" class="layui-input" name="U_30" id="U_30"  value="{{ $arr['U_30'] or '' }}" /></td>
+                            </tr>
+                            <tr>
+                                <td  align="center">说明一</td>
+                                <td><input type="text" class="layui-input" name="C_31" id="C_31" value="{{ $arr['C_31'] or '' }}" /></td>
+                                <td><input type="text" class="layui-input" name="E_31" id="E_31" value="{{ $arr['E_31'] or '' }}" /></td>
+                                <td align="center">text</td>
+                                <td><input type="text" class="layui-input" name="U_31" id="U_31" value="{{ $arr['U_31'] or '' }}" /></td>
+                            </tr>
+                            <tr>
+                                <td  align="center">说明二</td>
+                                <td><input type="text" class="layui-input" name="C_32" id="C_32" value="{{ $arr['C_32'] or '' }}" /></td>
+                                <td><input type="text" class="layui-input" name="E_32" id="E_32" value="{{ $arr['E_32'] or '' }}" /></td>
+                                <td align="center">text</td>
+                                <td><input type="text" class="layui-input" name="U_32" id="U_32" value="{{ $arr['U_32'] or '' }}" /></td>
+                            </tr>
+                            <tr>
+                                <td  align="center">说明三</td>
+                                <td><input type="text" class="layui-input" name="C_33" id="C_33" value="{{ $arr['C_33'] or '' }}" /></td>
+                                <td><input type="text" class="layui-input" name="E_33" id="E_33" value="{{ $arr['E_33'] or '' }}" /></td>
+                                <td align="center">text</td>
+                                <td><input type="text" class="layui-input" name="U_33" id="U_33" value="{{ $arr['U_33'] or '' }}" /></td>
                             </tr>
                             <tr>
                                 <td scope="row" colspan="6">
@@ -149,7 +213,7 @@
                     layer.msg(data.message);
                     if(data.code==1){
                         setTimeout(function(){
-                            window.location.href='/page-index';
+                            window.location.href='/page-solutiona';
                         },1000);
                     }
                 });
