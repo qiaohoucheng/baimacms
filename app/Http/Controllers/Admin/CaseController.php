@@ -103,7 +103,7 @@ class CaseController extends Controller
         $id1 = $request->get('id1');
         $id2 = $request->get('id2');
         if($id1 && $id2){
-            $res = DB::update('update baima_case as c1 join  baima_case as c2 on (c1.id = ? and c2.id =?) set c1.sort = c2.sort,c2.sort = c1.sort', [$id1,$id2]);
+            $res = DB::update('update baima_case as c1 join  baima_case as c2 on (c1.id = ? and c2.id = ? ) set c1.sort = c2.sort,c2.sort = c1.sort', [$id1,$id2]);
             if($res >0){
                 return $this->qhc('200' ,'移动成功！');
             }

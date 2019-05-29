@@ -113,7 +113,7 @@
                     if(id2 == undefined || id1 == undefined){
                         layer.msg('已经到底了');
                     }else{
-                        $.post('/website-link/move',{'id1':id1,'id2':id2,'_token':token},function(data){
+                        $.post('/website-case/move',{'id1':id1,'id2':id2,'_token':token},function(data){
                             if(data.code==200){
                                 $(".layui-laypage-btn").click();
                             }
