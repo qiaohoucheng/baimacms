@@ -84,7 +84,7 @@ class V1Controller extends Controller
             }
         }
 
-        return $this->qhc('200','success',$data);
+        return $this->qhc('200','success',$arr);
     }
     public function get_solution_b(){
         $data = DB::table('page_data')->where('module_id',4)->get()->toArray();
@@ -99,7 +99,7 @@ class V1Controller extends Controller
                 $arr['U_'.$v->num] = $v->link;
             }
         }
-        return $this->qhc('200','success',$data);
+        return $this->qhc('200','success',$arr);
     }
     public function get_download(){
         $data = DB::table('page_data')->where('module_id',2)->get()->toArray();
@@ -114,7 +114,7 @@ class V1Controller extends Controller
                 $arr['U_'.$v->num] = $v->link;
             }
         }
-        return $this->qhc('200','success',$data);
+        return $this->qhc('200','success',$arr);
     }
     public function get_service(){
         $data = DB::table('page_data')->where('module_id',5)->get()->toArray();
@@ -129,7 +129,7 @@ class V1Controller extends Controller
                 $arr['U_'.$v->num] = $v->link;
             }
         }
-        return $this->qhc('200','success',$data);
+        return $this->qhc('200','success',$arr);
     }
     //文章列表
     public function post_lists(){
