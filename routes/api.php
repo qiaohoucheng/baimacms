@@ -28,8 +28,16 @@ Route::group(['prefix' => 'v1','middleware'=>'cros'], function () {
     Route::get('getBanner', 'V1Controller@get_banner');
     //首页配置
     Route::get('getIndex', 'V1Controller@get_index_setting');
-    //成功案例
+    //友情链接
     Route::get('getLink', 'V1Controller@get_link');
+    //能源A
+    Route::get('getSolutiona', 'V1Controller@get_solution_a');
+    //能源B
+    Route::get('getSolutionb', 'V1Controller@get_solution_b');
+    //下载中心
+    Route::get('getDownload', 'V1Controller@get_download');
+    //服务中心
+    Route::get('getService', 'V1Controller@get_service');
     //首页文章列表
     Route::get('post_lists', 'V1Controller@post_lists');
     //文章详情

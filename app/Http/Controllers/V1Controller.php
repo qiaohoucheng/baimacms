@@ -7,6 +7,8 @@ use App\Model\Setting;
 use App\Model\Carousel;
 use App\Model\Link;
 use App\Model\Article;
+use App\Model\Cases;
+use App\Model\PageData;
 use Illuminate\Support\Facades\DB;
 class V1Controller extends Controller
 {
@@ -30,7 +32,7 @@ class V1Controller extends Controller
     }
     //首页设置
     public function  get_index_setting(){
-        $data = DB::table('page_data')->get()->toArray();
+        $data = DB::table('page_data')->where('module_id',1)->get()->toArray();
         foreach ($data as $k =>$v){
             if($v->content){
                 $arr['C_'.$v->num] = $v->content;
@@ -44,7 +46,7 @@ class V1Controller extends Controller
         }
         return $this->qhc('200','success',$arr);
     }
-    //成功案例
+    //友情链接
     public function get_link(){
         $data = Link::where('status',1)->with(['post'])->orderBy('sort','desc')->get()->toArray();
         foreach ($data as $k=>&$v){
@@ -52,6 +54,79 @@ class V1Controller extends Controller
                 $v['img'] = $v['post']['url'];
             }else{
                 $v['img'] ='';
+            }
+        }
+        return $this->qhc('200','success',$data);
+    }
+    //成功案例
+    public function get_case(){
+        $data = Cases::where('status',1)->with(['post'])->orderBy('sort','desc')->get()->toArray();
+        foreach ($data as $k=>&$v){
+            if(isset($v['post'])){
+                $v['img'] = $v['post']['url'];
+            }else{
+                $v['img'] ='';
+            }
+        }
+        return $this->qhc('200','success',$data);
+    }
+    public function get_solution_a(){
+        $data = DB::table('page_data')->where('module_id',3)->get()->toArray();
+        foreach ($data as $k =>$v){
+            if($v->content){
+                $arr['C_'.$v->num] = $v->content;
+            }
+            if($v->neirong){
+                $arr['E_'.$v->num] = $v->neirong;
+            }
+            if($v->link){
+                $arr['U_'.$v->num] = $v->link;
+            }
+        }
+
+        return $this->qhc('200','success',$data);
+    }
+    public function get_solution_b(){
+        $data = DB::table('page_data')->where('module_id',4)->get()->toArray();
+        foreach ($data as $k =>$v){
+            if($v->content){
+                $arr['C_'.$v->num] = $v->content;
+            }
+            if($v->neirong){
+                $arr['E_'.$v->num] = $v->neirong;
+            }
+            if($v->link){
+                $arr['U_'.$v->num] = $v->link;
+            }
+        }
+        return $this->qhc('200','success',$data);
+    }
+    public function get_download(){
+        $data = DB::table('page_data')->where('module_id',2)->get()->toArray();
+        foreach ($data as $k =>$v){
+            if($v->content){
+                $arr['C_'.$v->num] = $v->content;
+            }
+            if($v->neirong){
+                $arr['E_'.$v->num] = $v->neirong;
+            }
+            if($v->link){
+                $arr['U_'.$v->num] = $v->link;
+            }
+        }
+        return $this->qhc('200','success',$data);
+    }
+    public function get_service(){
+        $data = DB::table('page_data')->where('module_id',5)->get()->toArray();
+        foreach ($data as $k =>$v){
+            if($v->content){
+                $arr['C_'.$v->num] = $v->content;
+            }
+            if($v->neirong){
+                $arr['E_'.$v->num] = $v->neirong;
+            }
+            if($v->link){
+                $arr['U_'.$v->num] = $v->link;
             }
         }
         return $this->qhc('200','success',$data);
