@@ -30,6 +30,7 @@ Route::group(['prefix' => 'v1','middleware'=>'cros'], function () {
     Route::get('getIndex', 'V1Controller@get_index_setting');
     //友情链接
     Route::get('getLink', 'V1Controller@get_link');
+    Route::get('getCase', 'V1Controller@get_case');
     //能源A
     Route::get('getSolutiona', 'V1Controller@get_solution_a');
     //能源B
