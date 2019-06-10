@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Cos;
 use App\Model\Files;
+use Qiniu\Storage\UploadManager;
+use Qiniu\Auth;
 
 class FilesController extends Controller
 {
@@ -18,21 +20,28 @@ class FilesController extends Controller
            $file_model = Files::firstOrNew(['md5'=>md5_file($file->getPathname())]);
 
            if(!$file_model->id){
-               //3.上传cos
-               //$Cos = new Cos();
+               //3.上传
                $filename = time().rand('100','999').'.'.$file->guessClientExtension();
-               $object ='upload/pic/'.$filename;
+               //$object ='upload/pic/'.$filename;
+               //$Cos = new Cos();
                //$url = $Cos->putObject($object,$file->getPathname());
-               $content = file_get_contents($file->getPathname());
-               $a = file_put_contents(public_path($object),$content);
+               /*   qiniu   */
+               $upManager = new UploadManager();
+               $auth = new Auth('--DBJ2nP29csUJBGZ6AZbftIEAvrcnVCSBOP7nVF', 'dHx5T50KxQE-aLaxb6g6sBCt0iZZQaL2g4gouEYz');
+               $token = $auth->uploadToken('nanjing-dev');
+               //$content = file_get_contents($file->getPathname());
+
+               list($ret, $error) = $upManager->putFile($token, $filename, $file->getPathname());
+
+               //$a = file_put_contents(public_path($object),$content);
                //4.上传到数据库
-               if(isset($a) && $a == true){
+               if($ret){
                    $file_model->filename = $filename;
                    $file_model->originalname = $file->getClientOriginalName();
                    $file_model->type = $file->getClientMimeType();
                    $file_model->size = $file->getClientSize();
                    $file_model->suffix = $file->guessClientExtension();
-                   $file_model->url = config('app.url').'/'.$object;
+                   $file_model->url = 'http://psvxrcwtj.bkt.clouddn.com/'.$filename;
 
                    $file_model->save();
                }else{
@@ -48,6 +57,9 @@ class FilesController extends Controller
            //5.返回图片信息
        }
        abort('404');
+   }
+   public function upload_os(){
+
    }
    public function download($filename,$path)
    {
