@@ -26,7 +26,7 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">公司简介</label>
                                 <div class="layui-input-block">
-                                    <textarea name="intro" class="layui-textarea">{!! $data->intro or '这是公司简介' !!}</textarea>
+                                    <div id="intro"></div>
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -119,18 +119,37 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="/plugins/wangEditor/release/wangEditor.min.js"></script>
     <script>
+        var token ='{{ csrf_token() }}';
+        var E = window.wangEditor;
+        var editor = new E('#intro');
+        editor.customConfig.uploadImgServer = '/file/upload';  // 上传图片到服务器
+        // 3M
+        editor.customConfig.uploadImgMaxSize = 5 * 1024 * 1024;
+        // 限制一次最多上传 5 张图片
+        editor.customConfig.uploadImgMaxLength = 5;
+        // 自定义文件名
+        editor.customConfig.uploadFileName = 'file';
+        editor.customConfig.uploadImgTimeout = 5000;
+        editor.customConfig.uploadImgParams = {
+            _token: token,
+            is_editor:1,
+        }
+        editor.create();
+        editor.txt.html('{!! $data->intro !!}');
         layui.use(['form','upload'], function(){
             var form = layui.form;
             var layer = layui.layer;
             //监听提交
             form.on('submit(set_website)', function(data){
+                data.field.intro = editor.txt.html();
                 $.post(data.form.action,data.field,function(data){
                     layer.msg(data.message);
                     if(data.code==1){
-                        setTimeout(function(){
-                            window.location.reload();
-                        },1000)
+                        //setTimeout(function(){
+                           // window.location.reload();
+                       // },1000)
                     }
                 });
                 return false;
