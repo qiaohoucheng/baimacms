@@ -43,4 +43,6 @@ Route::group(['prefix' => 'v1','middleware'=>'cros'], function () {
     Route::get('post_lists', 'V1Controller@post_lists');
     //文章详情
     Route::get('post_detail/{id}', 'V1Controller@post_detail');
+    //企业资质
+    Route::get('getCertList', 'V1Controller@get_cert_list');
 });

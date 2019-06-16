@@ -8,14 +8,16 @@ Route::group(['namespace' => 'Admin','middleware' => ['auth','breadcrumbs']], fu
     Route::post('/website-carousel/move', 'CarouselController@move');//移动
     Route::post('/website-link/move', 'LinkController@move');//移动
     Route::post('/website-case/move', 'CaseController@move');//移动
+    Route::post('/website-cert/move', 'CertController@move');//移动
     /*  ---------  网站管理路由  --------  */
     Route::resource('website-nav','NavController'); //导航管理
     Route::resource('website-index','WebsiteController'); //首页管理
-    Route::resource('website-carousel','CarouselController'); //轮播图管理
+    Route::resource('website-carousel','CarouselController'); //轮播图管
     Route::resource('website-spread','SpreadController'); //推广管理
     Route::resource('website-main','MainController'); //精品推荐
     Route::resource('website-link','LinkController'); //友情链接
     Route::resource('website-case','CaseController'); //成功案例
+    Route::resource('website-cert','CertController'); //企业资质
     /*  ---------  页面管理路由  --------  */
     Route::resource('page-index','PageController'); //首页管理
     Route::resource('page-solutiona','PageSolutionaController'); //能源计量与计费管理

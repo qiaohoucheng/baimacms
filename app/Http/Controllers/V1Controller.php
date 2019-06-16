@@ -86,6 +86,18 @@ class V1Controller extends Controller
 
         return $this->qhc('200','success',$arr);
     }
+    public function get_cert_list(){
+        $data = DB::table('cert')->where('status',1)->orderBy('sort','desc')->get()->toArray();
+        $arr=[];
+        foreach ($data as $key=>$val){
+            if($val->type ==1){
+                $arr['g'][] = $val;
+            }else{
+                $arr['z'][] = $val;
+            }
+        }
+        return $this->qhc('200','success',$arr);
+    }
     public function get_solution_b(){
         $data = DB::table('page_data')->where('module_id',4)->get()->toArray();
         foreach ($data as $k =>$v){
