@@ -27,7 +27,8 @@ class FilesController extends Controller
                //$url = $Cos->putObject($object,$file->getPathname());
                /*   qiniu   */
                $upManager = new UploadManager();
-               $auth = new Auth('--DBJ2nP29csUJBGZ6AZbftIEAvrcnVCSBOP7nVF', 'dHx5T50KxQE-aLaxb6g6sBCt0iZZQaL2g4gouEYz');
+               //$auth = new Auth('--DBJ2nP29csUJBGZ6AZbftIEAvrcnVCSBOP7nVF', 'dHx5T50KxQE-aLaxb6g6sBCt0iZZQaL2g4gouEYz');
+               $auth = new Auth('z6uBty79k_DraRTZ6Gz1IMCUoJB1xoMCkIQ5rD7E', 'jVmStzPefCyOCz1Bq8ioGrUStyH6u2NaHNIWXfsF');
                $token = $auth->uploadToken('nanjing-dev');
                //$content = file_get_contents($file->getPathname());
 
