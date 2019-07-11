@@ -42,7 +42,7 @@ class FilesController extends Controller
                    $file_model->type = $file->getClientMimeType();
                    $file_model->size = $file->getClientSize();
                    $file_model->suffix = $file->guessClientExtension();
-                   $file_model->url = 'http://psvxrcwtj.bkt.clouddn.com/'.$filename;
+                   $file_model->url = 'http://pugmtye8u.bkt.clouddn.com/'.$filename;
 
                    $file_model->save();
                }else{
