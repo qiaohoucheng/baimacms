@@ -27,8 +27,7 @@ class FilesController extends Controller
                //$url = $Cos->putObject($object,$file->getPathname());
                /*   qiniu   */
                $upManager = new UploadManager();
-               //$auth = new Auth('--DBJ2nP29csUJBGZ6AZbftIEAvrcnVCSBOP7nVF', 'dHx5T50KxQE-aLaxb6g6sBCt0iZZQaL2g4gouEYz');
-               $auth = new Auth('z6uBty79k_DraRTZ6Gz1IMCUoJB1xoMCkIQ5rD7E', 'jVmStzPefCyOCz1Bq8ioGrUStyH6u2NaHNIWXfsF');
+               $auth = new Auth('--DBJ2nP29csUJBGZ6AZbftIEAvrcnVCSBOP7nVF', 'dHx5T50KxQE-aLaxb6g6sBCt0iZZQaL2g4gouEYz');
                $token = $auth->uploadToken('nanjing-dev');
                //$content = file_get_contents($file->getPathname());
 
@@ -42,7 +41,7 @@ class FilesController extends Controller
                    $file_model->type = $file->getClientMimeType();
                    $file_model->size = $file->getClientSize();
                    $file_model->suffix = $file->guessClientExtension();
-                   $file_model->url = 'http://pugmtye8u.bkt.clouddn.com/'.$filename;
+                   $file_model->url = 'http://cloud.nanjingrongshu.cn/'.$filename;
 
                    $file_model->save();
                }else{
