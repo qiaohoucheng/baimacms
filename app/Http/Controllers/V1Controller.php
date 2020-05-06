@@ -113,6 +113,21 @@ class V1Controller extends Controller
         }
         return $this->qhc('200','success',$arr);
     }
+    public function get_solution_c(){
+        $data = DB::table('page_data')->where('module_id',6)->get()->toArray();
+        foreach ($data as $k =>$v){
+            if($v->content){
+                $arr['C_'.$v->num] = $v->content;
+            }
+            if($v->neirong){
+                $arr['E_'.$v->num] = $v->neirong;
+            }
+            if($v->link){
+                $arr['U_'.$v->num] = $v->link;
+            }
+        }
+        return $this->qhc('200','success',$arr);
+    }
     public function get_download(){
         $data = DB::table('page_data')->where('module_id',2)->get()->toArray();
         foreach ($data as $k =>$v){

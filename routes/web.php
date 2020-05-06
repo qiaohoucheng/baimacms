@@ -22,6 +22,7 @@ Route::group(['namespace' => 'Admin','middleware' => ['auth','breadcrumbs']], fu
     Route::resource('page-index','PageController'); //首页管理
     Route::resource('page-solutiona','PageSolutionaController'); //能源计量与计费管理
     Route::resource('page-solutionb','PageSolutionbController'); //智能变配电运维管理
+    Route::resource('page-solutionc','PageSolutioncController'); //民用机场
     Route::resource('page-service','PageServiceController'); //服务中心
     Route::resource('page-download','PageDownloadController'); //下载中心
     /*  ---------  内容管理路由  --------  */

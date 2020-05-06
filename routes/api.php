@@ -35,6 +35,8 @@ Route::group(['prefix' => 'v1','middleware'=>'cros'], function () {
     Route::get('getSolutiona', 'V1Controller@get_solution_a');
     //能源B
     Route::get('getSolutionb', 'V1Controller@get_solution_b');
+    //民用机场
+    Route::get('getSolutionc', 'V1Controller@get_solution_c');
     //下载中心
     Route::get('getDownload', 'V1Controller@get_download');
     //服务中心
