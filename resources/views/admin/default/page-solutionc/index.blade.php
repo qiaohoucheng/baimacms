@@ -169,16 +169,16 @@
                                     <td align="center">text</td>
                                     <td><input type="text" class="layui-input" name="U_40" id="U_40"  value="{{ $arr['U_40'] or '' }}" /></td>
                                 </tr>
-                                <tr>
-                                    <td  align="center">图片</td>
-                                    <td>
-                                        <button type="button" class="layui-btn upload-btn" name="C_41" id="C_41"  value="{{ $arr['C_41'] or '' }}">
-                                            <i class="layui-icon"></i>上传文件</button>
-                                    </td>
-                                    <td><img src="{{ $arr['E_41'] or '' }}" id="E_41_img"><input type="hidden" name="E_41" id="E_41"  value="{{ $arr['E_41'] or '' }}"></td>
-                                    <td align="center">img</td>
-                                    <td><input type="text" class="layui-input"  name="U_41" id="U_41" value="{{ $arr['U_41'] or '' }}"  /></td>
-                                </tr>
+{{--                                <tr>--}}
+{{--                                    <td  align="center">图片</td>--}}
+{{--                                    <td>--}}
+{{--                                        <button type="button" class="layui-btn upload-btn" name="C_41" id="C_41"  value="{{ $arr['C_41'] or '' }}">--}}
+{{--                                            <i class="layui-icon"></i>上传文件</button>--}}
+{{--                                    </td>--}}
+{{--                                    <td><img src="{{ $arr['E_41'] or '' }}" id="E_41_img"><input type="hidden" name="E_41" id="E_41"  value="{{ $arr['E_41'] or '' }}"></td>--}}
+{{--                                    <td align="center">img</td>--}}
+{{--                                    <td><input type="text" class="layui-input"  name="U_41" id="U_41" value="{{ $arr['U_41'] or '' }}"  /></td>--}}
+{{--                                </tr>--}}
                                 <tr>
                                     <td  align="center">说明一</td>
                                     <td><input type="text" class="layui-input" name="C_42" id="C_42" value="{{ $arr['C_42'] or '' }}" /></td>
