@@ -21,7 +21,7 @@ class V1Controller extends Controller
     public function get_banner(){
         $data = Carousel::where('status',1)->with(['post'])->orderBy('sort','desc')->get()->toArray();
         foreach ($data as $k=>&$v){
-            $v['name'] ='了解智能变运维管理方案';
+            $v['name'] ='了解智慧能源管理解决方案';
             if(isset($v['post'])){
                 $v['img'] = $v['post']['url'];
             }else{
