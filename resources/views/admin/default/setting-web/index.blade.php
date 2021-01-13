@@ -137,7 +137,7 @@
             is_editor:1,
         }
         editor.create();
-        editor.txt.html('{!! $data->intro !!}');
+        editor.txt.html('{!! str_replace("'","\'",$data->intro) !!}');
         layui.use(['form','upload'], function(){
             var form = layui.form;
             var layer = layui.layer;
